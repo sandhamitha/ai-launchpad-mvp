@@ -1,0 +1,51 @@
+name: Deletion Guard
+
+# Watches every push for mass deletions (e.g. Obsidian mobile auto-sync
+# committing a partial/stale vault). Fails loudly if more than THRESHOLD
+# tracked files are deleted in a single push, so accidental wipes are
+# caught in ~1 minute. Detection only — the push still lands; recover with:
+#   git checkout <commit>^ -- <path>
+
+on: push
+
+env:
+  THRESHOLD: 5
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for mass deletions
+        run: |
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "New branch/ref — no prior state to compare. Skipping."
+            exit 0
+          fi
+          if ! git cat-file -e "$BEFORE" 2>/dev/null; then
+            echo "Prior commit $BEFORE not found (history rewrite?). Skipping."
+            exit 0
+          fi
+
+          DELETED=$(git diff --diff-filter=D --name-only "$BEFORE" "$AFTER" | wc -l | tr -d ' ')
+          echo "Files deleted in this push: $DELETED (threshold: $THRESHOLD)"
+
+          if [ "$DELETED" -gt "$THRESHOLD" ]; then
+            echo "::error::Mass deletion detected — $DELETED files removed in one push (threshold $THRESHOLD)."
+            echo ""
+            echo "Deleted files:"
+            git diff --diff-filter=D --name-only "$BEFORE" "$AFTER" | sed 's/^/  - /'
+            echo ""
+            echo "If accidental (e.g. mobile Obsidian auto-sync), recover with:"
+            echo "  git checkout ${AFTER}^ -- <path>"
+            exit 1
+          fi
+
+          echo "OK — deletions within safe range."
