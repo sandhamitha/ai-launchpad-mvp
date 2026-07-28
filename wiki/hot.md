@@ -3,26 +3,29 @@
 _Rewritten each session. ~300 words max. Start here._
 
 ## What this project is
-Selected for the **AI Launchpad** program — build an MVP and present it to a large audience. This vault is the shared research memory for that build, co-maintained with my mentor (separate private repo, mentor has read/write).
+The AI Launchpad MVP is now defined: an **agentic travel companion for Sri Lanka**. Autonomous agents (weather, traffic, emergencies, personalized advice) do dynamic, adaptive trip planning over **SL-specific local data (RAG)**, wrapped in an **interactive/generative UI**. Edge vs Google/Gemini = local knowledge + real-time autonomous assistance. Pitch to a large audience + investors; **50 participants** in the competition.
 
-## Current status (2026-07-26)
-- **Infrastructure done.** Standalone Obsidian vault + private repo `github.com/sandhamitha/ai-launchpad-mvp`, isolated from all other work.
-- **Auto-sync live:** launchd agent auto-pulls every 10 min + at login (pull-only, safe). Mentor's edits arrive automatically.
-- **Dedicated `/save-mvp` command:** saves memory to this vault's `wiki/` and pushes to THIS repo only — never to second-brain.
-- **Deletion guard active** on the repo (fails any push removing >5 files).
-- **MVP scope: still undefined.**
+## 🎯 Hard deadline: August 29 (pitch)
+
+## Current status (defined 2026-07-27 planning session)
+- Product concept, differentiation, UX direction, and tech approach all decided (see `decisions/`).
+- Judges weight **agentic-workflow sophistication + technical depth**, not just idea.
+- Fireflies transcript + summary filed in `transcripts/`.
 
 ## Next steps
-- [ ] Invite mentor as GitHub collaborator (**need their GitHub username/email**)
-- [ ] Define MVP problem statement + target user
-- [ ] Lock MVP scope (in / out for the launch demo)
-- [ ] Set build timeline against the Launchpad presentation date
-- [ ] First mentor sync → capture in `meetings/`
+- [x] **Speaker 2 (you):** feature-level mind map + product flows (by Thu/Fri); wireframes/sketches (web/mobile); make repo public + connect to GitHub project
+- [ ] **Speaker 1:** share prompts/code-format doc; create GitHub project + milestones; architectural refs
+- [ ] **Saturday 9:00 PM** — mentor review (wireframes + scope readiness)
+- [ ] Daily async check-ins
 
-## Key setup facts / gotchas
-- Commit/push from **desktop only**; keep mobile Obsidian **pull-only** (mobile auto-commit once wiped the other repo).
-- To save a session: run **`/save-mvp`** (not `/save-session` — that targets second-brain).
-- Sync files/paths: launchd plist `~/Library/LaunchAgents/com.saddy.ailaunchpad-pull.plist`; log at `~/Library/Application Support/ailaunchpad-sync/pull.log`.
+## Key decisions (in `decisions/`)
+- Product = agentic SL travel companion · Differentiation = local data + agents · UX = generative/interactive UI · Tech = incremental, RAG, simple stack, eval-first
 
-## Open questions for mentor
-- (add here)
+## Gotchas / flags
+- **Big flag:** concept ≈ the **Visit SL / Weli** project (SL travel companion, RAG, agentic). Decide whether to REUSE that spec/plan/`weli-backend` vs build fresh — potential major time-saver before Aug 29.
+- Save sessions with **`/save-mvp`** (not `/save-session`). Commit desktop-only; mobile Obsidian pull-only.
+
+## Open questions for mentor (Saturday)
+- Reuse Visit SL / Weli work, or fresh build?
+- Which agentic flows to demo for max judge impact?
+- Scope cut line if time runs short?
