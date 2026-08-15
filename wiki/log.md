@@ -4,6 +4,17 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-15 — Resumed; read mentor's GitHub board
+- Resumed after ~2wk pause. Target: PoC in ~1 week; Aug 29 pitch.
+- Refreshed `gh` token with `read:project`; read mentor's board (Project #2): 3 issues — **Finalizing the idea**, **Feature breakdown**, **Wireframing**.
+- His guidance = a pre-build discipline (validate idea → story-map features → wireframe). "Use your own creativity — just a perspective." Digested into `wiki/mentor-board-guidance.md`.
+- Key move: reuse existing **Visit SL** research to fill his idea-checklist fast; use his feature-breakdown method to lock the PoC scope (the thing we paused on).
+- **Plan NOT yet finalized** — dev paused by user until scope is locked.
+
+**Next:** finalize PoC scope via story-map + MVP line; fill idea-checklist gaps; wireframe; Sunday mentor call.
+
+---
+
 ## 2026-07-29 — Processed 2026-07-27 planning meeting (Fireflies)
 - **MVP defined:** agentic travel companion for Sri Lanka (autonomous agents + SL-local RAG + generative UI). Deadline **Aug 29**, 50 participants.
 - Filed Fireflies transcript + summary → `transcripts/`; wrote full meeting record → `meetings/2026-07-27-agentic-companion-planning.md`.

@@ -12,6 +12,9 @@ The AI Launchpad MVP is now defined: an **agentic travel companion for Sri Lanka
 - Judges weight **agentic-workflow sophistication + technical depth**, not just idea.
 - Fireflies transcript + summary filed in `transcripts/`.
 
+## Mentor guidance (2026-08-15) → see `mentor-board-guidance.md`
+Mentor's board = pre-build discipline: **finalize idea → feature breakdown → wireframe.** Approach: timebox each gate, reuse Visit SL research to fill the idea-checklist, use his feature-breakdown to lock the PoC scope. **Plan not yet finalized — dev paused until scope locked.**
+
 ## Next steps
 - [x] **Speaker 2 (you):** feature-level mind map + product flows (by Thu/Fri); wireframes/sketches (web/mobile); make repo public + connect to GitHub project
 - [ ] **Speaker 1:** share prompts/code-format doc; create GitHub project + milestones; architectural refs
