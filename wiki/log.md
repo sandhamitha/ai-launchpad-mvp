@@ -4,6 +4,17 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-15 (later) — Steps 1+2 delivered, board + timeline wired
+- Idea finalized (core: brainstorming/discovery, dynamic multi-agent, adaptive persona) — `wiki/idea-finalization.md`; refined via real interview findings (accuracy + timing; brainstorming-stage wedge).
+- Spec written per mentor's exact feature-breakdown method — `specs/2026-08-15-poc-scope-design.md`; user-approved.
+- Scope decision recorded — `decisions/2026-08-15-poc-scope-dynamic-multiagent.md` (supervisor + 3 core agents + web-search fallback on KB miss; safety = KB + real-time; graceful no-dead-end UX; provenance split).
+- GitHub: #1 #2 closed w/ evidence; #3 In Progress; created milestone *PoC — Aug 22* + issues #4–#11; roadmap timeline (start/target dates) set. Token upgraded read:project → project.
+- First weekly log written — `weekly-logs/2026-08-15.md`.
+
+**Next:** wireframes (#3, Aug 15–16) → S1 skeleton. Build needs: Anthropic key + Docker running.
+
+---
+
 ## 2026-08-15 — Resumed; read mentor's GitHub board
 - Resumed after ~2wk pause. Target: PoC in ~1 week; Aug 29 pitch.
 - Refreshed `gh` token with `read:project`; read mentor's board (Project #2): 3 issues — **Finalizing the idea**, **Feature breakdown**, **Wireframing**.

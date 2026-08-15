@@ -3,32 +3,24 @@
 _Rewritten each session. ~300 words max. Start here._
 
 ## What this project is
-The AI Launchpad MVP (core locked 2026-08-15): a **brainstorming / discovery companion for planning a Sri Lanka trip** — a **multi-agent intelligent system**, not a SaaS with a chatbot. A generalist/supervisor agent spawns specialized tool-using sub-agents (discovery, weather, transport, safety, deals) to surface **accurate, on-time** SL knowledge (exact places, hidden gems, live conditions) that generalist AI can't. **Adaptive persona** (reads the user, adapts tone/depth). Intelligent **live companion** during the trip + **generative UI**. Edge vs Google/Gemini = local, guide-reviewed data + real-time assistance. Pitch **Aug 29**; 50 participants. Full detail: `idea-finalization.md`.
+A **brainstorming/discovery companion** for planning a Sri Lanka trip — a **dynamic multi-agent system**, not a SaaS with a chatbot. A supervisor agent spawns specialized tool-using sub-agents **at runtime** (Discovery/RAG, Weather, Safety KB+live, Web-Search fallback on KB miss) to surface **accurate, on-time** SL knowledge generalist AI can't. Light adaptive persona; generative UI; provenance always visible (`guide-reviewed` vs `web-sourced`).
 
-## 🎯 Hard deadline: August 29 (pitch)
+## 🎯 Deadlines: PoC **Aug 22** · pitch **Aug 29** (50 participants)
 
-## Current status (defined 2026-07-27 planning session)
-- Product concept, differentiation, UX direction, and tech approach all decided (see `decisions/`).
-- Judges weight **agentic-workflow sophistication + technical depth**, not just idea.
-- Fireflies transcript + summary filed in `transcripts/`.
+## Status (2026-08-15) — planning DONE, build starts
+- ✅ Mentor Step 1 (idea) + Step 2 (feature breakdown) complete, in his exact format; issues #1 #2 closed with evidence.
+- ✅ Spec committed: `specs/2026-08-15-poc-scope-design.md` (architecture, 6 INVEST stories w/ G/W/T criteria, MoSCoW, walking skeleton).
+- ✅ GitHub board fully wired: milestone *PoC — Aug 22*, issues #4–#11, roadmap timeline.
+- ⏳ **Now:** #3 wireframes (Aug 15–16) → then S1 skeleton build.
 
-## Mentor guidance (2026-08-15) → see `mentor-board-guidance.md`
-Mentor's board = pre-build discipline: **finalize idea → feature breakdown → wireframe.** Approach: timebox each gate, reuse Visit SL research to fill the idea-checklist, use his feature-breakdown to lock the PoC scope. **Plan not yet finalized — dev paused until scope locked.**
+## Build order (board timeline)
+#3 wireframes → #4 S1 chat skeleton → #10 KB seed → #5 S2 discovery+fallback → #6 weather → #7 safety → #8 orchestration → #9 persona → #11 eval → PoC.
 
-## Next steps
-- [x] **Speaker 2 (you):** feature-level mind map + product flows (by Thu/Fri); wireframes/sketches (web/mobile); make repo public + connect to GitHub project
-- [ ] **Speaker 1:** share prompts/code-format doc; create GitHub project + milestones; architectural refs
-- [ ] **Saturday 9:00 PM** — mentor review (wireframes + scope readiness)
-- [ ] Daily async check-ins
+## Key facts / gotchas
+- Reuse **weli-backend** (FastAPI + pgvector migration + LangChain scaffold + venv ready; local Docker pgvector + fastembed planned — no OpenAI needed).
+- Blocked-on-user for build start: **Anthropic API key** (`~/.anthropic-key`) + Docker Desktop running.
+- Judge story: "why 5 agents not 1" = distinct tools/data/guardrails; dynamic spawn ON KB miss is the live demo moment.
+- Save with **`/save-mvp`** · meetings via `/log-meeting` · mobile Obsidian pull-only.
 
-## Key decisions (in `decisions/`)
-- Product = agentic SL travel companion · Differentiation = local data + agents · UX = generative/interactive UI · Tech = incremental, RAG, simple stack, eval-first
-
-## Gotchas / flags
-- **Big flag:** concept ≈ the **Visit SL / Weli** project (SL travel companion, RAG, agentic). Decide whether to REUSE that spec/plan/`weli-backend` vs build fresh — potential major time-saver before Aug 29.
-- Save sessions with **`/save-mvp`** (not `/save-session`). Commit desktop-only; mobile Obsidian pull-only.
-
-## Open questions for mentor (Saturday)
-- Reuse Visit SL / Weli work, or fresh build?
-- Which agentic flows to demo for max judge impact?
-- Scope cut line if time runs short?
+## Open
+- Champion user + willingness-to-act signal (parallel track) · confirm next mentor sync · wireframes to attach on #3.
