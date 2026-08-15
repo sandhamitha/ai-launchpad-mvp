@@ -25,6 +25,8 @@ User ──► Chat UI (streaming + generative components)
  (RAG, SL KB) (live API) (KB+live)  register & go, no re-architecture
 ```
 
+**Transport-agnostic registry (future-proofing):** agents are plain tool definitions, so the same registry can be exposed (1) to our own supervisor/UI, and (2) later over **MCP** to general-purpose agents (Claude/ChatGPT/Gemini) — SL intelligence as infrastructure, not a walled app. See Pitch-week stretch in §4.
+
 **Why multiple agents (the judge answer):** each has distinct tools, data, and guardrails —
 
 | Agent | Tools | Data | Guardrail |
@@ -79,6 +81,8 @@ From the validated problem, user interviews, competitor audit, the 2026-07-27 pl
 **SHOULD (if time):** follow-up question chips · 15-question eval harness (problem-model-fit proof) · Hotels/Places+affiliate agent as the live extensibility demo
 
 **COULD (defer):** Transport agent · Deals agent · live-trip triggers · itinerary persistence
+
+**PITCH-WEEK STRETCH (Aug 23–27, post-PoC):** **MCP server** exposing the agent registry as standard tools (`discover_places`, `check_safety`, `get_conditions`) so general-purpose agents (Claude/ChatGPT/Gemini) can call our SL intelligence directly. Kills the "why not just use ChatGPT?" objection — users keep their agent, we supply the accuracy. The registry is transport-agnostic by design, so this is a thin adapter, not a rebuild. Demo target: our tools running inside Claude Desktop at the pitch.
 
 **WON'T (this round):** real auth (fake login OK per mentor) · Modal deploy · Sanity pipeline · whitelabel · MCP/REST · mobile
 

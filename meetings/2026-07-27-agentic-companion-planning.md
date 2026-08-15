@@ -32,10 +32,10 @@ The MVP is now defined: an **agentic travel companion for Sri Lanka** — autono
 ## Action items
 **Speaker 1**
 - [ ] Share detailed doc with prompts + initial code formats (feature/product considerations) — by next morning
-- [ ] Create GitHub project connected to the repo; set milestones + tasks
+- [x] Create GitHub project connected to the repo; set milestones + tasks
 - [ ] Daily morning check-ins with Speaker 2
-- [ ] Architectural planning + technical references for agentic workflows
-- [ ] Supply session notes/transcript/decisions for the record *(← now done, in this vault)*
+- [x] Architectural planning + technical references for agentic workflows
+- [x] Supply session notes/transcript/decisions for the record *(← now done, in this vault)*
 - [ ] Curate design-system inspirations/references
 - [ ] Schedule + hold mentor review — Saturday 9:00 AM
 

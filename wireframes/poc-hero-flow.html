@@ -1,0 +1,88 @@
+<meta charset="utf-8">
+<title>PoC Wireframes — Hero Brainstorm Flow</title>
+<style>
+  body{background:#e8e8e8;color:#333;font:14px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:24px}
+  h1{font-size:18px} h2{font-size:14px;margin:0 0 8px;color:#666}
+  .row{display:flex;flex-wrap:wrap;gap:24px}
+  .frame{background:#fff;border:2px solid #999;border-radius:10px;width:340px;padding:14px;box-shadow:2px 2px 0 #bbb}
+  .bar{background:#ddd;border-radius:4px;height:12px;margin:6px 0}
+  .chip{display:inline-block;border:1.5px dashed #888;border-radius:14px;padding:3px 10px;margin:3px 2px;font-size:12px;color:#555}
+  .bubble-u{background:#d9d9d9;border-radius:12px 12px 2px 12px;padding:8px 10px;margin:8px 0 8px 60px;font-size:12.5px}
+  .bubble-a{background:#f3f3f3;border:1px solid #ccc;border-radius:12px 12px 12px 2px;padding:8px 10px;margin:8px 60px 8px 0;font-size:12.5px}
+  .agents{border:1.5px dashed #777;border-radius:8px;padding:8px;margin:8px 0;font-size:11.5px;background:#fafafa}
+  .agents b{font-size:11px;letter-spacing:.5px;color:#666}
+  .ag{display:flex;align-items:center;gap:6px;margin:4px 0}
+  .dot{width:8px;height:8px;border-radius:50%;background:#8a8}
+  .dot.run{background:#c90;animation:none}
+  .dot.spawn{background:#59c}
+  .card{border:1.5px solid #888;border-radius:8px;margin:8px 0;overflow:hidden}
+  .card .img{background:repeating-linear-gradient(45deg,#ddd,#ddd 8px,#eee 8px,#eee 16px);height:70px;display:flex;align-items:center;justify-content:center;color:#888;font-size:11px}
+  .card .pad{padding:8px}
+  .tag{font-size:10px;border-radius:3px;padding:2px 6px;color:#fff}
+  .tag.kb{background:#4a7} .tag.web{background:#59c} .tag.live{background:#c90}
+  .input{border:1.5px solid #999;border-radius:20px;padding:8px 12px;color:#999;font-size:12px;margin-top:10px}
+  .note{font-size:11px;color:#777;margin-top:8px;border-top:1px dashed #ccc;padding-top:6px}
+  .alert{border:1.5px solid #b66;border-radius:8px;padding:8px;font-size:12px;background:#fdf6f6;margin:8px 0}
+</style>
+
+<h1>PoC Wireframes — Hero Brainstorm/Discovery Flow <small style="color:#888">(low-fi · issue #3 · 2026-08-15)</small></h1>
+
+<div class="row">
+
+<div class="frame">
+  <h2>F1 — Landing / empty chat + persona-aware start</h2>
+  <div class="bar" style="width:40%"></div>
+  <div class="bubble-a">Ayubowan! 🙏 Tell me the trip that's in your head — vague is fine.<br><i>"2 weeks in December, beaches + wildlife, mid budget"</i></div>
+  <div style="margin:6px 0">
+    <span class="chip">🏖 Beach ideas</span><span class="chip">🐆 Wildlife</span><span class="chip">🚂 Scenic trains</span><span class="chip">🧘 Wellness</span>
+  </div>
+  <div class="input">Describe your trip idea…</div>
+  <div class="note">Follow-up chips = generative components. No login (fake login OK per mentor). Persona inferred silently from phrasing (S6).</div>
+</div>
+
+<div class="frame">
+  <h2>F2 — Brainstorm answer + visible agent activity (S1/S2/S5)</h2>
+  <div class="bubble-u">2 weeks Dec, south coast + wildlife, mid budget</div>
+  <div class="agents"><b>AGENTS</b>
+    <div class="ag"><span class="dot"></span> Supervisor → spawned 3 agents (why: places + timing + safety)</div>
+    <div class="ag"><span class="dot"></span> Discovery — searching guide-reviewed KB</div>
+    <div class="ag"><span class="dot run"></span> Weather — live Dec/monsoon check</div>
+    <div class="ag"><span class="dot"></span> Safety — area status</div>
+  </div>
+  <div class="card"><div class="img">[photo]</div><div class="pad">
+    <b>Hiriketiya Bay</b> <span class="tag kb">guide-reviewed</span><br>
+    <small>South coast · why-now: ideal in Dec, NE monsoon spares the south</small>
+  </div></div>
+  <div class="card"><div class="pad">
+    <b>🌦 Weather</b> <span class="tag live">live · 14:05</span> — South coast: dry season begins; seas calm. <small>src: open-meteo</small>
+  </div></div>
+  <div class="note">Agent panel = the judge moment (S5): what spawned & why. Cards cached → low token cost.</div>
+</div>
+
+<div class="frame">
+  <h2>F3 — KB miss → dynamic Web-Search spawn (S2 fallback)</h2>
+  <div class="bubble-u">What about "Kumana bird sanctuary"? and "Sigirya"?</div>
+  <div class="agents"><b>AGENTS</b>
+    <div class="ag"><span class="dot"></span> Discovery — no strong KB match for “Kumana”</div>
+    <div class="ag"><span class="dot spawn"></span> ✨ Web-Search — <b>spawned on KB miss</b></div>
+  </div>
+  <div class="bubble-a">Did you mean <b>Sigiriya</b>? →<br><br>
+  <b>Kumana National Park</b> <span class="tag web">web-sourced</span><br><small>East coast birding — best May–July; not yet in our guide-reviewed KB.</small></div>
+  <div class="note">No dead ends: misspell → "did you mean"; non-SL place → polite pivot to SL alternatives. Provenance tags keep KB trust intact.</div>
+</div>
+
+<div class="frame">
+  <h2>F4 — Safety check: KB + real-time (S4)</h2>
+  <div class="bubble-u">Is the hill country OK right now? Solo female.</div>
+  <div class="agents"><b>AGENTS</b>
+    <div class="ag"><span class="dot"></span> Safety — KB + live advisory</div>
+    <div class="ag"><span class="dot run"></span> Weather — landslide/rain signal</div>
+  </div>
+  <div class="alert">⚠️ Heavy rain advisory (Nuwara Eliya) <span class="tag live">live · 14:07</span><br>
+  <small>Trails fine by Thu · src: DMC advisory · solo-female tips from guide-reviewed KB</small></div>
+  <div class="bubble-a">Emergency: <b>1919</b> · Tourist Police <b>011-242-1052</b> — always shown on safety answers. No unqualified “all-clear”: verify via official advisory.</div>
+  <div class="note">Strictest guardrails live here (S4): timestamp + source + official contacts, graceful when live sources are down.</div>
+</div>
+
+</div>
+<p class="note" style="max-width:740px">Flow: F1 describe → F2 grounded brainstorm w/ visible orchestration → F3 graceful fallback (dynamic spawn demo) → F4 real-time safety. Deferred screens (itinerary, live-trip alerts) intentionally absent — PoC scope only.</p>
