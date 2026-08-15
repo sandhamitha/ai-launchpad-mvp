@@ -1,88 +1,152 @@
 <meta charset="utf-8">
-<title>PoC Wireframes — Hero Brainstorm Flow</title>
+<title>PoC Wireframes v3 — Inline collapsible agent trace (Cloudflare/LangGraph pattern)</title>
 <style>
-  body{background:#e8e8e8;color:#333;font:14px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:24px}
-  h1{font-size:18px} h2{font-size:14px;margin:0 0 8px;color:#666}
-  .row{display:flex;flex-wrap:wrap;gap:24px}
-  .frame{background:#fff;border:2px solid #999;border-radius:10px;width:340px;padding:14px;box-shadow:2px 2px 0 #bbb}
-  .bar{background:#ddd;border-radius:4px;height:12px;margin:6px 0}
-  .chip{display:inline-block;border:1.5px dashed #888;border-radius:14px;padding:3px 10px;margin:3px 2px;font-size:12px;color:#555}
-  .bubble-u{background:#d9d9d9;border-radius:12px 12px 2px 12px;padding:8px 10px;margin:8px 0 8px 60px;font-size:12.5px}
-  .bubble-a{background:#f3f3f3;border:1px solid #ccc;border-radius:12px 12px 12px 2px;padding:8px 10px;margin:8px 60px 8px 0;font-size:12.5px}
-  .agents{border:1.5px dashed #777;border-radius:8px;padding:8px;margin:8px 0;font-size:11.5px;background:#fafafa}
-  .agents b{font-size:11px;letter-spacing:.5px;color:#666}
-  .ag{display:flex;align-items:center;gap:6px;margin:4px 0}
-  .dot{width:8px;height:8px;border-radius:50%;background:#8a8}
-  .dot.run{background:#c90;animation:none}
-  .dot.spawn{background:#59c}
-  .card{border:1.5px solid #888;border-radius:8px;margin:8px 0;overflow:hidden}
-  .card .img{background:repeating-linear-gradient(45deg,#ddd,#ddd 8px,#eee 8px,#eee 16px);height:70px;display:flex;align-items:center;justify-content:center;color:#888;font-size:11px}
-  .card .pad{padding:8px}
-  .tag{font-size:10px;border-radius:3px;padding:2px 6px;color:#fff}
-  .tag.kb{background:#4a7} .tag.web{background:#59c} .tag.live{background:#c90}
-  .input{border:1.5px solid #999;border-radius:20px;padding:8px 12px;color:#999;font-size:12px;margin-top:10px}
+  body{background:#e8e8e8;color:#333;font:13px/1.45 -apple-system,system-ui,sans-serif;margin:0;padding:24px}
+  h1{font-size:18px} h2{font-size:13.5px;margin:0 0 8px;color:#666}
+  .frame{background:#fff;border:2px solid #999;border-radius:10px;max-width:680px;padding:12px;box-shadow:2px 2px 0 #bbb;margin:0 0 28px}
+  .shell{display:flex;gap:10px;min-height:280px}
+  .rail{width:120px;border:1.5px dashed #aaa;border-radius:8px;padding:8px;font-size:11px;color:#777}
+  .rail .t{background:#eee;border-radius:4px;padding:4px 6px;margin:4px 0}
+  .main{flex:1;display:flex;flex-direction:column}
+  .tiles{display:flex;flex-direction:column;gap:6px;max-width:300px;margin:10px auto}
+  .tile{border:1.5px solid #bbb;border-radius:8px;padding:8px 10px;font-size:12px;background:#f7f7f7}
+  .tile small{color:#888;display:block}
+  .chips{margin:6px 0}
+  .chip{display:inline-block;border:1.5px dashed #888;border-radius:14px;padding:2px 9px;margin:2px;font-size:11px;color:#555}
+  .chip.edit{border-style:solid;background:#f2f2f2}
+  .bubble-u{background:#d9d9d9;border-radius:12px 12px 2px 12px;padding:7px 9px;margin:6px 0 6px 100px;font-size:12px}
+  .bubble-a{background:#f3f3f3;border:1px solid #ccc;border-radius:12px 12px 12px 2px;padding:7px 9px;margin:6px 100px 6px 0;font-size:12px}
+  /* inline collapsible agent trace */
+  .trace{border:1.5px dashed #999;border-radius:7px;margin:6px 100px 6px 0;font-size:11px;background:#fafafa}
+  .trace .hd{padding:5px 9px;color:#666;background:#efefef;border-radius:6px 6px 0 0;cursor:default}
+  .trace.closed .hd{border-radius:6px}
+  .trace .bd{padding:6px 9px;border-top:1px dashed #ccc}
+  .ag{display:flex;align-items:center;gap:5px;margin:4px 0}
+  .dot{width:8px;height:8px;border-radius:50%;background:#8a8;flex:none}
+  .dot.run{background:#c90}.dot.spawn{background:#59c}
+  .cards{display:flex;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .card{border:1.5px solid #888;border-radius:8px;width:160px;overflow:hidden;background:#fff}
+  .card .img{background:repeating-linear-gradient(45deg,#ddd,#ddd 8px,#eee 8px,#eee 16px);height:48px;display:flex;align-items:center;justify-content:center;color:#888;font-size:10px}
+  .card .pad{padding:7px;font-size:11px}
+  .ctl{display:flex;gap:6px;border-top:1px dashed #ccc;padding:4px 7px;font-size:11px;color:#666}
+  .ctl span{border:1px solid #bbb;border-radius:4px;padding:1px 6px}
+  .ctl .on{background:#e8f0e8;border-color:#7a7}
+  .tag{font-size:9.5px;border-radius:3px;padding:1px 5px;color:#fff}
+  .tag.kb{background:#4a7}.tag.web{background:#59c}.tag.live{background:#c90}
+  .input{border:1.5px solid #999;border-radius:20px;padding:7px 12px;color:#999;font-size:12px;margin-top:auto}
   .note{font-size:11px;color:#777;margin-top:8px;border-top:1px dashed #ccc;padding-top:6px}
-  .alert{border:1.5px solid #b66;border-radius:8px;padding:8px;font-size:12px;background:#fdf6f6;margin:8px 0}
+  .alert{border:1.5px solid #b66;border-radius:8px;padding:7px;font-size:11.5px;background:#fdf6f6;margin:6px 100px 6px 0}
+  .stream{color:#999;font-style:italic;font-size:11px}
+  table{border-collapse:collapse;font-size:11.5px;width:100%}
+  td,th{border:1px solid #ccc;padding:5px 7px;text-align:left}
+  th{background:#f0f0f0}
 </style>
 
-<h1>PoC Wireframes — Hero Brainstorm/Discovery Flow <small style="color:#888">(low-fi · issue #3 · 2026-08-15)</small></h1>
-
-<div class="row">
+<h1>PoC Wireframes v3 — inline collapsible agent trace <small style="color:#888">(#3 · 2026-08-16 · Cloudflare/LangGraph pattern + OpenUI)</small></h1>
 
 <div class="frame">
-  <h2>F1 — Landing / empty chat + persona-aware start</h2>
-  <div class="bar" style="width:40%"></div>
-  <div class="bubble-a">Ayubowan! 🙏 Tell me the trip that's in your head — vague is fine.<br><i>"2 weeks in December, beaches + wildlife, mid budget"</i></div>
-  <div style="margin:6px 0">
-    <span class="chip">🏖 Beach ideas</span><span class="chip">🐆 Wildlife</span><span class="chip">🚂 Scenic trains</span><span class="chip">🧘 Wellness</span>
+  <h2>F1 — Empty state: hero input + tiles below + resume cards (Cloudflare full-view pattern)</h2>
+  <div class="shell">
+    <div class="rail">＋ New trip · 🔍<br><br><small><b>TODAY</b></small><div class="t">Dec south coast…</div><small><b>PAST WEEK</b></small><div class="t">Honeymoon ideas…</div></div>
+    <div class="main">
+      <div style="text-align:center;color:#888;margin-top:6px">🌴<br><b style="font-size:15px">Where should Sri Lanka take you?</b></div>
+      <div class="input" style="margin:10px 30px 4px;text-align:left">Describe the trip in your head — vague is fine…</div>
+      <div style="display:flex;gap:6px;justify-content:center;margin:8px 0;flex-wrap:wrap">
+        <div class="tile" style="width:120px">🏖 <b>2 wks, beaches + wildlife</b><small>around Dec weather</small></div>
+        <div class="tile" style="width:120px">🐆 <b>Yala vs Udawalawe?</b><small>honest comparison</small></div>
+        <div class="tile" style="width:120px">🧘 <b>Solo female — safe?</b><small>live conditions</small></div>
+      </div>
+      <div style="border:1.5px dashed #bbb;border-radius:8px;padding:7px;margin:6px 20px 0;font-size:11px;color:#777">
+        <b>Ready to keep planning?</b> <span style="float:right">Search all</span><br>
+        <span class="chip edit">Dec south coast trip · 2d ago</span><span class="chip edit">Honeymoon ideas · 1w ago</span>
+      </div>
+    </div>
   </div>
-  <div class="input">Describe your trip idea…</div>
-  <div class="note">Follow-up chips = generative components. No login (fake login OK per mentor). Persona inferred silently from phrasing (S6).</div>
-</div>
-
-<div class="frame">
-  <h2>F2 — Brainstorm answer + visible agent activity (S1/S2/S5)</h2>
-  <div class="bubble-u">2 weeks Dec, south coast + wildlife, mid budget</div>
-  <div class="agents"><b>AGENTS</b>
-    <div class="ag"><span class="dot"></span> Supervisor → spawned 3 agents (why: places + timing + safety)</div>
-    <div class="ag"><span class="dot"></span> Discovery — searching guide-reviewed KB</div>
-    <div class="ag"><span class="dot run"></span> Weather — live Dec/monsoon check</div>
-    <div class="ag"><span class="dot"></span> Safety — area status</div>
-  </div>
-  <div class="card"><div class="img">[photo]</div><div class="pad">
-    <b>Hiriketiya Bay</b> <span class="tag kb">guide-reviewed</span><br>
-    <small>South coast · why-now: ideal in Dec, NE monsoon spares the south</small>
-  </div></div>
-  <div class="card"><div class="pad">
-    <b>🌦 Weather</b> <span class="tag live">live · 14:05</span> — South coast: dry season begins; seas calm. <small>src: open-meteo</small>
-  </div></div>
-  <div class="note">Agent panel = the judge moment (S5): what spawned & why. Cards cached → low token cost.</div>
+  <div class="note">Cloudflare full-view pattern: hero question + centered input, tiles BELOW input, time-grouped thread rail, and <b>resume cards</b> ("Ready to keep planning?") — the episodic-retention answer (F6) made visible: trips pause and resume naturally. Once the user types, constraints become editable chips (F2).</div>
 </div>
 
 <div class="frame">
-  <h2>F3 — KB miss → dynamic Web-Search spawn (S2 fallback)</h2>
-  <div class="bubble-u">What about "Kumana bird sanctuary"? and "Sigirya"?</div>
-  <div class="agents"><b>AGENTS</b>
-    <div class="ag"><span class="dot"></span> Discovery — no strong KB match for “Kumana”</div>
-    <div class="ag"><span class="dot spawn"></span> ✨ Web-Search — <b>spawned on KB miss</b></div>
+  <h2>F2 — Brainstorm: agent trace auto-open WHILE running, collapses when done</h2>
+  <div class="shell">
+    <div class="rail">THREADS<div class="t">Dec south coast…</div></div>
+    <div class="main">
+      <div class="bubble-u">2 weeks Dec, south coast + wildlife, mid budget</div>
+      <div class="chips"><b style="font-size:10px;color:#888">YOUR TRIP</b> <span class="chip edit">📅 Dec · 2wks ✎</span><span class="chip edit">💰 mid ✎</span><span class="chip edit">📍 south + wildlife ✎</span></div>
+      <div class="trace">
+        <div class="hd">⌄ Working — 3 agents <span class="stream">(auto-open while running)</span></div>
+        <div class="bd">
+          <div class="ag"><span class="dot"></span>Supervisor — spawned 3: places + timing + safety</div>
+          <div class="ag"><span class="dot"></span>Discovery — guide-reviewed KB ✓ 4 matches</div>
+          <div class="ag"><span class="dot run"></span>Weather — live December check…</div>
+          <div class="ag"><span class="dot"></span>Safety — south coast status ✓</div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="img">[photo]</div><div class="pad"><b>Hiriketiya Bay</b> <span class="tag kb">guide-reviewed</span><br><small>dry season Dec</small></div><div class="ctl"><span class="on">📌</span><span>👍</span><span>👎</span></div></div>
+        <div class="card"><div class="img">[photo]</div><div class="pad"><b>Udawalawe NP</b> <span class="tag kb">guide-reviewed</span><br><small>elephants, fewer crowds</small></div><div class="ctl"><span>📌</span><span class="on">👍</span><span>👎</span></div></div>
+      </div>
+      <div class="bubble-a"><span class="stream">▍streaming…</span></div>
+      <div class="input">Ask anything…</div>
+    </div>
   </div>
-  <div class="bubble-a">Did you mean <b>Sigiriya</b>? →<br><br>
-  <b>Kumana National Park</b> <span class="tag web">web-sourced</span><br><small>East coast birding — best May–July; not yet in our guide-reviewed KB.</small></div>
-  <div class="note">No dead ends: misspell → "did you mean"; non-SL place → polite pivot to SL alternatives. Provenance tags keep KB trust intact.</div>
+  <div class="note">The trace sits INLINE between question and answer (Cloudflare "Hide reasoning" pattern). Demo: it's open + live while agents run — the judge moment — then collapses to one line (F3). 📌/👍/👎 steer next batch; chips editable → re-run.</div>
 </div>
 
 <div class="frame">
-  <h2>F4 — Safety check: KB + real-time (S4)</h2>
-  <div class="bubble-u">Is the hill country OK right now? Solo female.</div>
-  <div class="agents"><b>AGENTS</b>
-    <div class="ag"><span class="dot"></span> Safety — KB + live advisory</div>
-    <div class="ag"><span class="dot run"></span> Weather — landslide/rain signal</div>
+  <h2>F3 — KB miss → Web-Search spawned (trace shows it); previous trace collapsed</h2>
+  <div class="shell">
+    <div class="main">
+      <div class="trace closed"><div class="hd">▸ 3 agents · 4 guide-reviewed results · 2.8s</div></div>
+      <div class="bubble-u">What about "Kumana bird sanctuary"? and "Sigirya"?</div>
+      <div class="trace">
+        <div class="hd">⌄ Working — 2 agents</div>
+        <div class="bd">
+          <div class="ag"><span class="dot"></span>Discovery — no strong KB match for “Kumana”</div>
+          <div class="ag"><span class="dot spawn"></span>✨ Web-Search — <b>spawned on KB miss</b>, searching…</div>
+        </div>
+      </div>
+      <div class="bubble-a">Did you mean <b>Sigiriya</b>? → proceeding ✓</div>
+      <div class="cards">
+        <div class="card"><div class="img">[photo]</div><div class="pad"><b>Kumana NP</b> <span class="tag web">web-sourced</span><br><small>east-coast birding · May–Jul · not yet in our KB</small></div><div class="ctl"><span>📌</span><span>👍</span><span>👎</span></div></div>
+      </div>
+      <div class="input">…</div>
+    </div>
   </div>
-  <div class="alert">⚠️ Heavy rain advisory (Nuwara Eliya) <span class="tag live">live · 14:07</span><br>
-  <small>Trails fine by Thu · src: DMC advisory · solo-female tips from guide-reviewed KB</small></div>
-  <div class="bubble-a">Emergency: <b>1919</b> · Tourist Police <b>011-242-1052</b> — always shown on safety answers. No unqualified “all-clear”: verify via official advisory.</div>
-  <div class="note">Strictest guardrails live here (S4): timestamp + source + official contacts, graceful when live sources are down.</div>
+  <div class="note">Collapsed strip ("▸ 3 agents · 2.8s") keeps history scannable — expandable anytime. Spawn-on-miss is visible right in the flow. Provenance: `web-sourced` ≠ `guide-reviewed`.</div>
 </div>
 
+<div class="frame">
+  <h2>F4 — Safety: same pattern, strict guardrails</h2>
+  <div class="shell">
+    <div class="main">
+      <div class="bubble-u">Is the hill country OK right now? Solo female.</div>
+      <div class="trace">
+        <div class="hd">⌄ Working — 2 agents</div>
+        <div class="bd">
+          <div class="ag"><span class="dot"></span>Safety — KB + country advisory ✓</div>
+          <div class="ag"><span class="dot run"></span>Weather — rain/landslide signal…</div>
+        </div>
+      </div>
+      <div class="alert">⚠️ Heavy rain advisory — Nuwara Eliya <span class="tag live">live · 14:07</span><br><small>src: weather feed · trails likely fine by Thu · solo-female tips: guide-reviewed KB</small></div>
+      <div class="bubble-a">Emergency <b>1919</b> · Tourist Police <b>011-242-1052</b> — always shown. Country-level advisory linked; no unqualified “all-clear”.</div>
+      <div class="input">…</div>
+    </div>
+  </div>
+  <div class="note">Regional “right now” = weather/hazard data; advisory = country-level (honest scoping per audit).</div>
 </div>
-<p class="note" style="max-width:740px">Flow: F1 describe → F2 grounded brainstorm w/ visible orchestration → F3 graceful fallback (dynamic spawn demo) → F4 real-time safety. Deferred screens (itinerary, live-trip alerts) intentionally absent — PoC scope only.</p>
+
+<div class="frame">
+  <h2>F5 — Component library (OpenUI contract)</h2>
+  <table>
+    <tr><th>Component</th><th>Props (essentials)</th><th>Emitted by</th></tr>
+    <tr><td>AgentTrace</td><td>agents[{name,state,reason}], durationMs, collapsed (auto-open while running)</td><td>runtime (inline, per turn)</td></tr>
+    <tr><td>PlaceCard</td><td>name, img, region, whyNow, provenance(kb|web), pinned, vote</td><td>Discovery / Web-Search</td></tr>
+    <tr><td>WeatherCard</td><td>region, summary, timestamp, source</td><td>Weather</td></tr>
+    <tr><td>SafetyAlert</td><td>severity, region, summary, timestamp, source, contacts[]</td><td>Safety</td></tr>
+    <tr><td>ConstraintChips</td><td>constraints[] (editable → re-run)</td><td>Supervisor</td></tr>
+    <tr><td>SuggestionTiles</td><td>tiles[{icon,title,subtitle}] (empty state)</td><td>static/Supervisor</td></tr>
+  </table>
+  <div class="note">AgentTrace replaces the v2 side panel — one component, streamed per turn, LangGraph-boilerplate-style. Cached components, props-only streaming (OpenUI Lang) = low token cost. Pin/vote/chip events feed the supervisor.</div>
+</div>
+
+<p class="note" style="max-width:680px">v3 changes: side panel → inline collapsible AgentTrace (Cloudflare/Claude pattern) · Cloudflare-style empty-state tiles · single-column chat, thread rail kept · F5 contract updated. Flow: F1 → F2 (trace live) → F3 (spawn-on-miss) → F4 (safety).</p>
