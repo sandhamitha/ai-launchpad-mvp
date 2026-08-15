@@ -4,6 +4,17 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-16 (later) — Wireframes locked (#3 closed) + Claude Design import
+- Iterated wireframes v1→v3.1 with user: desktop-first, **inline collapsible AgentTrace** (Cloudflare/LangGraph pattern — auto-open while running, collapses to one-liner), hero empty state w/ suggestion tiles + resume cards, both control mechanics (editable constraint chips + pin/👍/👎), OpenUI component contract (F5). Committed; **#3 closed** with full summary.
+- User produced a polished hand-drawn wireframe set in **Claude Design** ("Weli AI travel companion" project); imported via DesignSync → `wireframes/weli-ai-wireframes.dc.html` + `support.js`, pushed, linked on #3 with viewing instructions.
+- **Folded wireframe details into spec + tickets** (S2/#5: "keep my spelling" option, web-vs-guide side-by-side, skeleton cards; S4/#7: ◷ re-check control, safety copy rule — never "you'll be fine", no all-clear badge).
+- **Name (#13) deferred** — "Weli AI" is a working title only; noted brand-tie consideration on the ticket.
+- Studied OpenUI docs (Agent Interface SDK / OpenUI Lang / Cloud) — components composed from OUR library, props-only streaming.
+
+**Next:** #15 landing page + waitlist (due Aug 17–19) · user's architecture session → apply audit's 5 technical fixes → build S1 · blockers: Anthropic key + Docker.
+
+---
+
 ## 2026-08-16 — Idea-phase audit → findings + fix tickets; comms reply drafted
 - Ran a deep adversarial audit (full: `wiki/risk-audit-2026-08-15.md` — 4 critical / 5 high / ~13 medium). Technical findings **parked** pending the architecture session.
 - Idea-layer evaluation vs mentor's metrics → `wiki/idea-phase-findings.md`: strongest risks are story-layer — F1 "guide-reviewed" claim integrity, F2 no product name, F3 Visit-SL-vs-standalone narrative, F4 wedge asserted not demonstrated, F5 thin distribution evidence, F7 "Controllable" gap in V×U×C×R.
