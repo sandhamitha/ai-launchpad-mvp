@@ -3,7 +3,7 @@
 _Rewritten each session. ~300 words max. Start here._
 
 ## What this project is
-The AI Launchpad MVP is now defined: an **agentic travel companion for Sri Lanka**. Autonomous agents (weather, traffic, emergencies, personalized advice) do dynamic, adaptive trip planning over **SL-specific local data (RAG)**, wrapped in an **interactive/generative UI**. Edge vs Google/Gemini = local knowledge + real-time autonomous assistance. Pitch to a large audience + investors; **50 participants** in the competition.
+The AI Launchpad MVP (core locked 2026-08-15): a **brainstorming / discovery companion for planning a Sri Lanka trip** — a **multi-agent intelligent system**, not a SaaS with a chatbot. A generalist/supervisor agent spawns specialized tool-using sub-agents (discovery, weather, transport, safety, deals) to surface **accurate, on-time** SL knowledge (exact places, hidden gems, live conditions) that generalist AI can't. **Adaptive persona** (reads the user, adapts tone/depth). Intelligent **live companion** during the trip + **generative UI**. Edge vs Google/Gemini = local, guide-reviewed data + real-time assistance. Pitch **Aug 29**; 50 participants. Full detail: `idea-finalization.md`.
 
 ## 🎯 Hard deadline: August 29 (pitch)
 

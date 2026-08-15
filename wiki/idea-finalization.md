@@ -20,10 +20,17 @@ _Filling mentor's Issue 1 checklist. Drafted 2026-08-15, mostly from existing Vi
 - **🔬 Real prompt test on messy data:** run the **15 recurring tourist questions** (from the Visit SL spec) against Claude *with* vs *without* SL-RAG; evaluate on messy/edge cases. → This is the Day-2 eval; proves the model can actually do it.
 - **✅ Why it should hold:** these are factual, retrievable, SL-specific queries — a good fit for RAG + tool-calling, not open-ended judgment.
 
-## Agent-native fit
-- **✍️ The ONE bounded responsibility:** *"Given a traveler's constraints, autonomously produce and continuously adapt a day-by-day Sri Lanka itinerary — proactively flagging weather, transport, and safety issues."*
-- **✅ Remove-the-AI test:** without the agent it's just a static guidebook / a form → passes (agent removal removes the core value).
-- **✅ Task category:** high-volume, semi-structured, retrieval + rules → the feasible category the mentor lists, not open-ended judgment.
+## Agent-native fit — CORE (locked 2026-08-15)
+
+**Core identity:** a **brainstorming / discovery companion** for planning a Sri Lanka trip — NOT an itinerary generator, and NOT "a SaaS with a chatbot." It's a **multi-agent intelligent system**.
+
+- **The core responsibility:** own the **ideation/brainstorming moment** — surface *accurate, on-time* SL knowledge (exact places, hidden gems, specific venues, live weather/economy/conditions) that generalist AI can't, so travelers brainstorm inside it instead of defaulting to Gemini/ChatGPT.
+- **Multi-agent architecture (your articulation):** a **generalist/supervisor agent** that dynamically **spawns & allocates specialized, tool-using sub-agents** for discrete tasks (discovery, weather, transport, safety/emergency, deals). *"Why 5 agents, not 1"* is the story judges will probe (confirmed in transcript).
+- **Adaptive persona (your addition):** the system **reads what kind of user it's talking to and adapts tone + depth of info** accordingly.
+- **Intelligent live companion (from transcript):** background agents that keep up with the traveler during the trip — reroute on floods/roadblocks, surface deals, handle SL-specific emergencies from the guide-reviewed KB.
+- **Generative UI (from transcript):** cached interactive components (images, graphs, follow-up questions) — richer than plain chat, low token cost.
+- **✅ Remove-the-AI test:** without the agents it's just a static guidebook → passes.
+- **✅ Task category:** retrieval + tool-use + orchestration — feasible, not open-ended judgment.
 
 ## AI-native design (Visible × Understandable × Controllable × Recoverable)
 - **✍️ Visible:** companion surfaces suggestions at the planning moment + live during the trip (not buried in a menu).
