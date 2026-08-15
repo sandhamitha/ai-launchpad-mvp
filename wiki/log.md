@@ -4,6 +4,17 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-16 — Idea-phase audit → findings + fix tickets; comms reply drafted
+- Ran a deep adversarial audit (full: `wiki/risk-audit-2026-08-15.md` — 4 critical / 5 high / ~13 medium). Technical findings **parked** pending the architecture session.
+- Idea-layer evaluation vs mentor's metrics → `wiki/idea-phase-findings.md`: strongest risks are story-layer — F1 "guide-reviewed" claim integrity, F2 no product name, F3 Visit-SL-vs-standalone narrative, F4 wedge asserted not demonstrated, F5 thin distribution evidence, F7 "Controllable" gap in V×U×C×R.
+- Created fix tickets **#13–#17** (name, guide review, landing page + waitlist, Gemini side-by-side, controllability mechanic) — scheduled on the roadmap; #17 under PoC, rest under Pitch milestone.
+- MCP direction locked earlier now committed in spec (§2 transport-agnostic registry + §4 pitch-week stretch, issue #12).
+- Drafted the (late) reply to the AI Launch Pad comms email (project blurb + spam-folder apology) — user to attach headshot + send.
+
+**Next:** wireframe review (#3) · name decision (#13) · landing page (#15) · user's architecture session (then apply audit's 5 technical fixes: code home, S1 split, KB 60–100 chunks, early smoke-eval, calendar re-cut) · blockers: Anthropic key + Docker.
+
+---
+
 ## 2026-08-15 (later) — Steps 1+2 delivered, board + timeline wired
 - Idea finalized (core: brainstorming/discovery, dynamic multi-agent, adaptive persona) — `wiki/idea-finalization.md`; refined via real interview findings (accuracy + timing; brainstorming-stage wedge).
 - Spec written per mentor's exact feature-breakdown method — `specs/2026-08-15-poc-scope-design.md`; user-approved.
