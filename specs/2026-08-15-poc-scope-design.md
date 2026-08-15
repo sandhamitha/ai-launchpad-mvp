@@ -96,7 +96,9 @@ From the validated problem, user interviews, competitor audit, the 2026-07-27 pl
 **S2 — Grounded discovery with graceful fallback.** As a traveler, I want suggestions of exact places incl. hidden gems — and a smooth answer even when I ask about something obscure or misspelled — so that I'm never hard-rejected back to a generalist AI.
 - Given a query about places, When Discovery runs, Then every KB suggestion carries a visible `guide-reviewed` source tag.
 - Given a query with no good KB match, When Discovery reports the miss, Then the supervisor **spawns the Web-Search agent** and answers from live search — clearly tagged `web-sourced` (never disguised as guide-reviewed, never a bare "I don't know").
-- Given a misspelled place name (e.g. "Sigirya"), When Discovery/search resolves it, Then the answer offers "did you mean **Sigiriya**?" and proceeds with the correction.
+- Given a misspelled place name (e.g. "Sigirya"), When Discovery/search resolves it, Then the answer offers "did you mean **Sigiriya**?" with BOTH options — "Yes, that one" and "No, keep my spelling" (never silently overrides the user).
+- Given a web-sourced result, When a guide-reviewed alternative exists nearby/for the same intent, Then it's shown alongside (e.g. Sigiriya `web-sourced` next to Pidurangala `guide-reviewed`) — the trust system demonstrated in direct comparison.
+- Given PlaceCards are streaming in, When a card hasn't fully arrived, Then a skeleton-card state renders (never a blank gap or layout jump).
 - Given a place that isn't in Sri Lanka, When search reveals that, Then the answer politely notes it's outside Sri Lanka and pivots to comparable SL alternatives (error path — no dead end, no hallucinated SL location).
 - Given a place suggestion, When rendered, Then it appears as a place card (image, region, why-now, provenance tag) — not a text wall.
 
@@ -110,6 +112,8 @@ From the validated problem, user interviews, competitor audit, the 2026-07-27 pl
 - Given uncertain live data, When Safety runs, Then it says so and links the official advisory — never an unqualified all-clear.
 - Given any safety-related query, When the final answer is rendered, Then SL official emergency contacts are visibly included.
 - Given both live sources are unreachable, When Safety runs, Then the answer serves KB guidance clearly marked "live status unavailable — verify via official advisory" (error path).
+- Given any safety card, When rendered, Then it includes a "◷ re-check" control that re-runs the live lookup on demand.
+- **Copy rule (from wireframes):** safety answers qualify everything — "nothing here says don't come; it says arrive by train" — NEVER "you'll be fine", and no green/all-clear badge state exists for safety content.
 
 **S5 — Dynamic orchestration (demo-visible).** As a judge, I want to see which agents ran and why, so that I can evaluate the agentic workflow.
 - Given any query, When it is answered, Then the UI/trace shows which agents the supervisor spawned and why.
