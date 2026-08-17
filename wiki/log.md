@@ -4,6 +4,16 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-18 — Logged 2026-08-17 mentor sync (Prototype & UX Alignment)
+- Filed transcript + summary → `transcripts/2026-08-17-prototype-ux-alignment-*`; meeting record → `meetings/`; **4 decisions** → `decisions/` (mobile-first UI · landing↔canvas split · FastAPI+WebSockets streaming-first · timeline re-cut).
+- Vision validated by mentor (hidden gems, provenance UI, persona, guide validation, multi-agent, streaming).
+- **New timeline:** clickable prototype **Aug 18 eve** → design final **Aug 19** → PoC review **Fri Aug 21** → presentation **Aug 29**; daily 15–20 min calls; parallel UI ∥ backend workstreams.
+- Flags: mobile-first supersedes desktop wireframes (v4 pass needed) · "canvas" is a new surface to scope · WebSockets vs SSE open · Swift = post-PoC exploration only · Fireflies "April" = August.
+
+**Next:** build the clickable index-HTML prototype TODAY (mentor template incoming) · update board dates/tickets · then streaming skeleton (S1).
+
+---
+
 ## 2026-08-16 (later) — Wireframes locked (#3 closed) + Claude Design import
 - Iterated wireframes v1→v3.1 with user: desktop-first, **inline collapsible AgentTrace** (Cloudflare/LangGraph pattern — auto-open while running, collapses to one-liner), hero empty state w/ suggestion tiles + resume cards, both control mechanics (editable constraint chips + pin/👍/👎), OpenUI component contract (F5). Committed; **#3 closed** with full summary.
 - User produced a polished hand-drawn wireframe set in **Claude Design** ("Weli AI travel companion" project); imported via DesignSync → `wireframes/weli-ai-wireframes.dc.html` + `support.js`, pushed, linked on #3 with viewing instructions.
