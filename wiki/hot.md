@@ -3,24 +3,23 @@
 _Rewritten each session. ~300 words max. Start here._
 
 ## What this project is
-A **brainstorming/discovery companion** for Sri Lanka trips — dynamic multi-agent system (supervisor spawns Discovery/RAG, Weather, Safety, Web-Search on KB miss). Generative UI = **streamed JSON component chunks + view registry** (SSE-first per mentor's guide, `wiki/mentor-streaming-guide.md`). Provenance badges (`guide-reviewed`/`web-sourced`/`live`). Working title "Weli AI" (#13 open). MCP later (#12).
+A **brainstorming/discovery companion** for Sri Lanka trips — dynamic multi-agent system. Core defined at the 2026-08-21 sync: a capped **mini-interview criteria engine** feeds a **trip-timeline planner (the centerpiece)** — justified day-by-day plan + animated journey timeline (not a map). During-trip live agent **deferred past Aug 29**. Provenance badges + guide-reviewed KB remain the trust story. Working title "Weli AI" (#13 open).
 
-## 🎯 Pitch/presentation submission: **Aug 29**
+## 🎯 Aug 29 submission → elimination → top-10 live demo (Trace, TBC) · **next sync Sunday**
 
-## Status (2026-08-21) — prototype DELIVERED
-- **#18 clickable mobile prototype done + pushed** → `prototypes/weli-ai-mobile-prototype.dc.html` (open in browser; flow rail jumps states). Onboarding → Home → Chat ×3 (brainstorm/fallback/safety). CC-licensed photos w/ credits, original sticker SVG, pure-CSS iPhone frame (standalone-safe).
-- Mentor board items all Done: #1 idea · #2 features · #3 wireframes · #18 prototype.
-- Design assets live in Claude Design project "Weli AI travel companion" (wireframes + prototype); Classical system (Cormorant Garamond/Lora, cream + amber).
-- **Build NOT started.**
+## Client & stack (locked 2026-08-21, see decisions/-1…-6)
+- **SwiftUI with predefined dynamic components** — NOT generative UI (OpenUI is web-only; A2UI ~3× cost). JSON chunks → view registry.
+- **Text-first**; voice = thin stretch demo only (Gemini Live candidate).
+- **Build order:** crayon design system → **Supabase basic login** → chat↔LangChain hello-world → streaming → **LangGraph orchestration + LangSmith traces**.
+- **Cheap models for dev** (~1,000 runs ≈ $5), multi-model per agent mix.
+- Affiliate transparency: separate offers section, neutral recommendations.
 
-## ⛔ Blockers (user)
-1. **Anthropic API key** → `~/.anthropic-key` · 2. **Docker running**
+## Prototype feedback (#18)
+Reviewed positively — agent-count display fine for judges; make consumer copy friendlier.
 
-## Next
-- Ping mentor: review prototype (`prototypes/…dc.html`, pull + open in browser) + restart daily calls
-- Decide **#19** (mobile-first wireframes) — likely satisfied by the prototype → close?
-- **Start the build**: backend SSE pipe first (mentor guide build order), then agents; #10 KB seed (60–100 chunks); #20 canvas scope; #11 smoke eval
-- Aug 26–28 reserved: deck + recorded demo + #16 Gemini side-by-side
+## My action items (due before Sunday)
+- [ ] Mac repair · [ ] crayon design system in Swift · [ ] Supabase login · [ ] hello-world chat round-trip → streaming · [ ] derive agentic pattern from transcript → send mentor · [ ] cost-test cheap providers · [ ] small commits
+- Mentor owes: recording-tool link · LangSmith instructions · design-pattern review · (maybe) template prototype.
 
 ## Gotchas
-`/save-mvp` · `/log-meeting` · mobile Obsidian pull-only · safety copy: never "all-clear" · Commons images carry CC BY-SA credits (keep them) · ios-frame.jsx is Claude-Design-only (CSS frame is the standalone path).
+`/save-mvp` · `/log-meeting` · diarization unreliable in tonight's transcript (roles attributed only where unambiguous) · watch-notification demo = mock, frame honestly · Google-Maps free-tier figure unverified · safety copy: never "all-clear".

@@ -4,6 +4,18 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-22 — Logged 2026-08-21 mentor call (Mobile-First Strategy, ~83 min)
+- Transcript archived (no Fireflies summary this time — distilled directly); record → `meetings/2026-08-21-mobile-first-strategy.md`; **6 decisions** → `decisions/2026-08-21-mobile-first-strategy-1…6.md`.
+- **Agentic core defined:** capped mini-interview criteria engine → **trip-timeline planner centerpiece** (justified day-by-day + animated journey view); during-trip agent deferred past Aug 29.
+- **Client locked:** SwiftUI **predefined dynamic components** (not generative UI — OpenUI web-only, A2UI ~3× cost); text-first, voice = thin stretch.
+- **Stack/build order:** crayon design system → Supabase login → chat hello-world → streaming → LangGraph + LangSmith; cheap dev models (~1,000 runs ≈ $5), per-agent model mix; affiliate transparency rule.
+- Prototype (#18) reviewed positively; consumer copy to be friendlier. **Submission Aug 29 → elimination → top-10 live demo (Trace, TBC). Next sync Sunday.**
+- Flags: transcript diarization unreliable (roles attributed cautiously) · watch-notification demo = mock · Maps free-tier figure unverified.
+
+**Next:** execute pre-Sunday action items (design system, Supabase login, chat round-trip → streaming, agentic-pattern doc, cost tests) · update board to the new scope · Mac repair.
+
+---
+
 ## 2026-08-21 (later) — Clickable mobile prototype DELIVERED (#18 closed)
 - User generated the mobile prototype in Claude Design (same project as wireframes; pastel "Take a break" + TripPilot refs, prompt engineered here); imported via DesignSync → `prototypes/` (10 files, self-contained).
 - **Solved the images gap:** 3 Wikimedia Commons CC BY-SA photos (Yala leopard, Talalla, Sigiriya) fetched with credits embedded in the image-slots + an original SVG onboarding sticker (map+pin+compass).
