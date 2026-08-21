@@ -4,6 +4,17 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-21 — Mentor's streaming guide filed; transport resolved (SSE-first)
+- Received + filed mentor's technical guide → `wiki/mentor-streaming-guide.md` (verbatim + "what this settles" header).
+- **Transport flag RESOLVED:** SSE by default; WebSocket only for interrupts / human-in-the-loop / persistent sessions. Noted on issue #4.
+- **Generative UI protocol confirmed:** structured JSON chunks (component type + props) + client view registry — independently matches our F5/OpenUI contract. `astream_events` feeds AgentTrace rows.
+- Build order locked per guide: plain-text SSE pipe → JSON chunks + registry → WebSocket only where needed → chrome → reconnection/error states.
+- ⚠️ **Ground-truth re-sync pending:** status of #18 prototype (was due Aug 18 eve), any Aug 18–20 build progress, whether today's PoC review (Aug 21) is happening, and blockers (Anthropic key, Docker) — user hasn't confirmed yet.
+
+**Next:** answer the 4 re-sync questions → re-plan today → build (#18 prototype if unshipped, else S1 SSE pipe per guide).
+
+---
+
 ## 2026-08-18 — Logged 2026-08-17 mentor sync (Prototype & UX Alignment)
 - Filed transcript + summary → `transcripts/2026-08-17-prototype-ux-alignment-*`; meeting record → `meetings/`; **4 decisions** → `decisions/` (mobile-first UI · landing↔canvas split · FastAPI+WebSockets streaming-first · timeline re-cut).
 - Vision validated by mentor (hidden gems, provenance UI, persona, guide validation, multi-agent, streaming).
