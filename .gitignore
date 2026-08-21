@@ -12,3 +12,9 @@
 
 # Scratch
 *.tmp
+
+# Xcode per-user state (never sync — like .obsidian workspace files)
+xcuserdata/
+*.xcuserstate
+DerivedData/
+*.xcscmblueprint

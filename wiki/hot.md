@@ -3,24 +3,24 @@
 _Rewritten each session. ~300 words max. Start here._
 
 ## What this project is
-A **brainstorming/discovery companion** for Sri Lanka trips — dynamic multi-agent system. Core defined at the 2026-08-21 sync: a capped **mini-interview criteria engine** feeds a **trip-timeline planner (the centerpiece)** — justified day-by-day plan + animated journey timeline (not a map). During-trip live agent **deferred past Aug 29**. Provenance badges + guide-reviewed KB remain the trust story. Working title "Weli AI" (#13 open).
+"Weli AI" (working title) — Sri Lanka trip companion. Capped **mini-interview criteria engine → trip-timeline planner centerpiece**. **Flat supervisor + capped dynamic fan-out + verifier** (full pattern: `wiki/agentic-pattern.md`, #25 — reconciled w/ research, ready for mentor). SwiftUI client, **MV pattern** (`wiki/research-swiftui-architecture.md`); backend LangGraph on StateGraph + `Send` (`wiki/research-agentic-patterns.md`).
 
-## 🎯 Aug 29 submission → elimination → top-10 live demo (Trace, TBC) · **next sync Sunday**
-**Submission format (official, `wiki/submission-guidelines.md`): ≤20-min RECORDED video + slides + technical diagram + accessible GitHub repo (all mandatory) + 5 Teamtailor answers.** Tickets #29–#33. ⚠️ repo is private — judge access must be arranged (#33).
+## 🎯 Aug 29: ≤20-min video + slides + diagram + accessible repo + Teamtailor (#29–#33) · elimination → top-10 live demo · **Sunday sync**
 
-## Client & stack (locked 2026-08-21, see decisions/-1…-6)
-- **SwiftUI with predefined dynamic components** — NOT generative UI (OpenUI is web-only; A2UI ~3× cost). JSON chunks → view registry.
-- **Text-first**; voice = thin stretch demo only (Gemini Live candidate).
-- **Build order:** crayon design system → **Supabase basic login** → chat↔LangChain hello-world → streaming → **LangGraph orchestration + LangSmith traces**.
-- **Cheap models for dev** (~1,000 runs ≈ $5), multi-model per agent mix.
-- Affiliate transparency: separate offers section, neutral recommendations.
+## Status (2026-08-22)
+- ✅ **iOS scaffold running** — `mvp/ios/WeliAI/` (SwiftUI, iOS-only; xcuserdata ignored). Code home = `mvp/{ios,backend}` in THIS repo.
+- ✅ Architecture locked both sides (MV client · hand-rolled supervisor backend).
+- ✅ #25 pattern doc finalized → **send to mentor before Sunday**.
+- Guardrails = build requirement (`wiki/agent-guardrails.md`, #34). Submission reqs filed (`wiki/submission-guidelines.md`).
 
-## Prototype feedback (#18)
-Reviewed positively — agent-count display fine for judges; make consumer copy friendlier.
+## ⛔ Blockers (user)
+**Anthropic key** (`~/.anthropic-key`) · **Docker running** — gate #23/#28 backend work.
 
-## My action items (due before Sunday)
-- [ ] Mac repair · [ ] crayon design system in Swift · [ ] Supabase login · [ ] hello-world chat round-trip → streaming · [ ] derive agentic pattern from transcript → send mentor · [ ] cost-test cheap providers · [ ] small commits
-- Mentor owes: recording-tool link · LangSmith instructions · design-pattern review · (maybe) template prototype.
+## Build queue (board dates)
+1. **#21** design tokens + `UIComponent` enum/view registry into scaffold (next up)
+2. **#22** Supabase login · **#28** cost tests · **#25** send doc ✉️
+3. **#23** SSE pipe (Aug 23–24) → **#24** LangGraph + **#26** criteria engine (Aug 24–26) → **#27** timeline planner (Aug 25–27)
+4. #31 diagram (Aug 25–26) → #29/#30 video+slides (Aug 26–28) → #32/#33 (Aug 27–28)
 
 ## Gotchas
-`/save-mvp` · `/log-meeting` · diarization unreliable in tonight's transcript (roles attributed only where unambiguous) · watch-notification demo = mock, frame honestly · Google-Maps free-tier figure unverified · safety copy: never "all-clear" · **GUARDRAILS ARE A BUILD REQUIREMENT at every step — `wiki/agent-guardrails.md` (#34): data-vs-instruction boundaries, per-agent tool allowlists, schema-validated outputs, KB suggestion-queue, injection tests in eval.**
+`/save-mvp` · `/log-meeting` · MV not MVVM-everywhere · `bytes.lines` drops SSE blank lines · never `stream_mode="values"` (state leak) · guardrails checklist at every step · safety copy: never "all-clear" · xcuserdata/DerivedData ignored.

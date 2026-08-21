@@ -4,6 +4,18 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-22 (later) — iOS scaffold running + architecture locked + #25 pattern doc finalized
+- **First Xcode scaffold built & running** (user's first iOS app 🎉): `mvp/ios/WeliAI/` — SwiftUI, iOS-only (multiplatform deliberately deferred: targets are add-later checkboxes), no nested git, `xcuserdata` gitignored.
+- **Code home decided:** `mvp/ios/` + `mvp/backend/` inside this repo (board-linked commits; one judge-accessible link for #33).
+- **Two research passes (agents):** → `wiki/research-swiftui-architecture.md` (verdict: **MV pattern** — vanilla SwiftUI + `@Observable`, ViewModels only for Chat/TripTimeline; actor SSEClient + AsyncThrowingStream; type-discriminated Codable registry w/ `.unknown` fallback) and `wiki/research-agentic-patterns.md` (verdict: hand-rolled tool-calling supervisor on StateGraph + `Send` fan-out; `subgraphs` streaming; state-leak warning on `stream_mode="values"`).
+- **#25 deliverable finalized:** `wiki/agentic-pattern.md` (flat supervisor + capped dynamic fan-out + verifier + assembler; evidence-backed) — reconciled with research: hand-rolled supervisor preferred over deprecated prebuilt; stream-whitelist stated as deliberate guardrail. **Ready to send to mentor before Sunday.**
+- **#25 pushed (`04ef1f8`) + issue closed** with delivery summary. Framework question settled and documented in the doc: **LangGraph only** (Google ADK considered/rejected — ecosystem gravity, single runtime; ADK/A2A → roadmap beside MCP #12).
+- Submission guidelines + guardrails were filed earlier today (tickets #29–#34).
+
+**Next:** send #25 doc to mentor · build #21 design tokens + UIComponent enum/view registry into the scaffold · #22 Supabase login · backend SSE pipe (#23) — blockers: Anthropic key, Docker.
+
+---
+
 ## 2026-08-22 — Logged 2026-08-21 mentor call (Mobile-First Strategy, ~83 min)
 - Transcript archived (no Fireflies summary this time — distilled directly); record → `meetings/2026-08-21-mobile-first-strategy.md`; **6 decisions** → `decisions/2026-08-21-mobile-first-strategy-1…6.md`.
 - **Agentic core defined:** capped mini-interview criteria engine → **trip-timeline planner centerpiece** (justified day-by-day + animated journey view); during-trip agent deferred past Aug 29.

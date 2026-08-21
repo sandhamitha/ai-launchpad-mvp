@@ -12,6 +12,8 @@
 | submission-guidelines.md | Official final-submission requirements: ≤20-min video, slides, diagram, repo access, Teamtailor | 2026-08-22 |
 | agent-guardrails.md | BUILD REQUIREMENT: prompt-injection defense + harmful-action prevention checklist (all agents) | 2026-08-22 |
 | agentic-pattern.md | FINAL agentic design pattern (#25): flat supervisor + capped dynamic fan-out + verifier — evidence, rejected alternatives, LangGraph blueprint | 2026-08-22 |
+| research-swiftui-architecture.md | Research verdict: MV pattern (vanilla SwiftUI + @Observable), SSE streaming + view-registry patterns | 2026-08-22 |
+| research-agentic-patterns.md | Research verdict: hand-rolled supervisor on StateGraph + Send fan-out, streaming + guardrail placement | 2026-08-22 |
 | ../wireframes/poc-hero-flow.html | Low-fi structural wireframes v3.1 (issue #3) | 2026-08-16 |
 | ../wireframes/weli-ai-wireframes.dc.html | Polished Claude Design wireframe set — 4 screens + trust-language legend (open in browser) | 2026-08-16 |
 | ../prototypes/weli-ai-mobile-prototype.dc.html | Clickable mobile prototype (#18) — onboarding/home/chat ×3, images + iPhone frame, standalone (open in browser) | 2026-08-21 |
