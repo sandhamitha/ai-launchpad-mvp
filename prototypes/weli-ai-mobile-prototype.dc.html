@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/classical-ae339519-f10f-4a0a-9e59-17ff6b69b769/styles.css">
+<script src="_ds/classical-ae339519-f10f-4a0a-9e59-17ff6b69b769/_ds_bundle.js"></script>
+<script src="image-slot.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+body{margin:0;background:var(--color-bg);font-family:var(--font-body);color:var(--color-text)}
+a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-800)}
+@keyframes wspin{to{transform:rotate(360deg)}}
+@keyframes wblink{0%,100%{opacity:1}50%{opacity:.15}}
+@keyframes wslide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes wshimmer{0%{opacity:.45}50%{opacity:.9}100%{opacity:.45}}
+.hscroll::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding:var(--space-6) var(--space-4) var(--space-8)">
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-1)">
+    <div style="font-family:var(--font-heading);font-weight:600;font-size:26px">Weli AI — flow skeleton</div>
+    <div style="font-size:12.5px;color:var(--color-neutral-600);font-style:italic">Clickable prototype for mentor review · tap the phone to walk the flow</div>
+  </div>
+
+  <sc-if value="{{ showFlowRail }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;justify-content:center">
+    <button onClick="{{ goOnboard }}" style="font-family:var(--font-body);font-size:12.5px;padding:6px 14px;border-radius:999px;cursor:pointer;background:transparent;border:1px solid {{ railOnboardBorder }};color:{{ railOnboardColor }}">1 · Onboarding</button>
+    <button onClick="{{ goHome }}" style="font-family:var(--font-body);font-size:12.5px;padding:6px 14px;border-radius:999px;cursor:pointer;background:transparent;border:1px solid {{ railHomeBorder }};color:{{ railHomeColor }}">2 · Home</button>
+    <button onClick="{{ goA }}" style="font-family:var(--font-body);font-size:12.5px;padding:6px 14px;border-radius:999px;cursor:pointer;background:transparent;border:1px solid {{ railABorder }};color:{{ railAColor }}">3a · Brainstorm</button>
+    <button onClick="{{ goB }}" style="font-family:var(--font-body);font-size:12.5px;padding:6px 14px;border-radius:999px;cursor:pointer;background:transparent;border:1px solid {{ railBBorder }};color:{{ railBColor }}">3b · Fallback</button>
+    <button onClick="{{ goC }}" style="font-family:var(--font-body);font-size:12.5px;padding:6px 14px;border-radius:999px;cursor:pointer;background:transparent;border:1px solid {{ railCBorder }};color:{{ railCColor }}">3c · Safety</button>
+  </div>
+  </sc-if>
+
+  <!-- Pure-CSS iPhone frame (replaces the React ios-frame.jsx import so the prototype renders standalone in any browser) -->
+  <div style="width:402px;height:874px;border-radius:48px;overflow:hidden;position:relative;background:#F2F2F7;box-shadow:0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.12);flex:none">
+    <!-- dynamic island -->
+    <div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:126px;height:37px;border-radius:24px;background:#000;z-index:50"></div>
+    <!-- status bar -->
+    <div style="position:absolute;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:21px 34px 0;font-family:-apple-system,system-ui,sans-serif">
+      <span style="font-weight:590;font-size:17px;color:#000">9:41</span>
+      <span style="display:flex;align-items:center;gap:7px">
+        <svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="7.5" width="3.2" height="4.5" rx="0.7" fill="#000"/><rect x="4.8" y="5" width="3.2" height="7" rx="0.7" fill="#000"/><rect x="9.6" y="2.5" width="3.2" height="9.5" rx="0.7" fill="#000"/><rect x="14.4" y="0" width="3.2" height="12" rx="0.7" fill="#000"/></svg>
+        <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 3.2C10.8 3.2 12.9 4.1 14.4 5.6L15.5 4.5C13.7 2.7 11.2 1.5 8.5 1.5C5.8 1.5 3.3 2.7 1.5 4.5L2.6 5.6C4.1 4.1 6.2 3.2 8.5 3.2Z" fill="#000"/><path d="M8.5 6.8C9.9 6.8 11.1 7.3 12 8.2L13.1 7.1C11.8 5.9 10.2 5.1 8.5 5.1C6.8 5.1 5.2 5.9 3.9 7.1L5 8.2C5.9 7.3 7.1 6.8 8.5 6.8Z" fill="#000"/><circle cx="8.5" cy="10.5" r="1.5" fill="#000"/></svg>
+        <svg width="27" height="13" viewBox="0 0 27 13"><rect x="0.5" y="0.5" width="23" height="12" rx="3.5" stroke="#000" stroke-opacity="0.35" fill="none"/><rect x="2" y="2" width="20" height="9" rx="2" fill="#000"/><path d="M25 4.5V8.5C25.8 8.2 26.5 7.2 26.5 6.5C26.5 5.8 25.8 4.8 25 4.5Z" fill="#000" fill-opacity="0.4"/></svg>
+      </span>
+    </div>
+    <!-- home indicator -->
+    <div style="position:absolute;bottom:0;left:0;right:0;z-index:60;height:34px;display:flex;justify-content:center;align-items:flex-end;padding-bottom:8px;pointer-events:none"><div style="width:139px;height:5px;border-radius:100px;background:rgba(0,0,0,0.25)"></div></div>
+    <div style="height:100%;display:flex;flex-direction:column;background:var(--color-bg);font-family:var(--font-body);color:var(--color-text);padding-top:58px;box-sizing:border-box">
+
+      <sc-if value="{{ isOnboard }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:56px 28px 40px;gap:var(--space-4);text-align:center">
+        <div style="flex:1"></div>
+        <div style="font-family:var(--font-heading);font-weight:400;font-size:40px;line-height:1.06;text-wrap:balance">Where should <span style="font-style:italic;color:var(--color-accent-600)">Sri Lanka</span> take you?</div>
+        <div style="font-size:14px;line-height:1.55;color:var(--color-neutral-600);max-width:290px">Your local-grounded travel companion — real places, real conditions, real timing.</div>
+        <div style="flex:1"></div>
+        <image-slot id="onboard-sticker" src="img/onboard-sticker.svg" style="width:250px;height:250px" shape="rounded" radius="28" fit="contain" placeholder="Drop sticker artwork — SL map + pin + compass"></image-slot>
+        <div style="flex:1.4"></div>
+        <button onClick="{{ goHome }}" style="font-family:var(--font-body);font-size:16px;letter-spacing:.01em;color:var(--color-neutral-100);background:var(--color-neutral-900);border:0;border-radius:999px;padding:16px 44px;cursor:pointer;box-shadow:{{ ctaGlow }}" style-hover="background:var(--color-neutral-800)">Start exploring</button>
+        <div style="font-size:11.5px;color:var(--color-neutral-500);font-style:italic">No account needed</div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+        <div style="flex:1;overflow-y:auto;padding:20px 20px 28px;display:flex;flex-direction:column;gap:var(--space-4)">
+          <div style="display:flex;flex-direction:column;gap:2px;padding-top:6px">
+            <div style="font-size:13px;color:var(--color-neutral-600)">Ayubowan 👋</div>
+            <div style="font-family:var(--font-heading);font-weight:600;font-size:30px;line-height:1.1">Let’s shape your trip?</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div onClick="{{ goA }}" style="display:flex;align-items:center;gap:var(--space-3);border:1px solid var(--color-divider);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;min-height:44px" style-hover="border-color:var(--color-accent-400);background:var(--color-neutral-100)">
+              <span style="font-size:19px;flex:none">🏖</span>
+              <span style="display:flex;flex-direction:column;gap:1px;flex:1"><span style="font-size:14px">2 weeks, beaches + wildlife</span><span style="font-size:12px;color:var(--color-neutral-500)">around Dec weather</span></span>
+              <span style="color:var(--color-neutral-400)">›</span>
+            </div>
+            <div onClick="{{ goA }}" style="display:flex;align-items:center;gap:var(--space-3);border:1px solid var(--color-divider);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;min-height:44px" style-hover="border-color:var(--color-accent-400);background:var(--color-neutral-100)">
+              <span style="font-size:19px;flex:none">🐆</span>
+              <span style="display:flex;flex-direction:column;gap:1px;flex:1"><span style="font-size:14px">Yala vs Udawalawe?</span><span style="font-size:12px;color:var(--color-neutral-500)">honest comparison</span></span>
+              <span style="color:var(--color-neutral-400)">›</span>
+            </div>
+            <div onClick="{{ goC }}" style="display:flex;align-items:center;gap:var(--space-3);border:1px solid var(--color-divider);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;min-height:44px" style-hover="border-color:var(--color-accent-400);background:var(--color-neutral-100)">
+              <span style="font-size:19px;flex:none">🧘</span>
+              <span style="display:flex;flex-direction:column;gap:1px;flex:1"><span style="font-size:14px">Solo female — is it safe?</span><span style="font-size:12px;color:var(--color-neutral-500)">live conditions</span></span>
+              <span style="color:var(--color-neutral-400)">›</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-3);padding-top:var(--space-1)">
+            <span style="font-family:var(--font-heading);font-weight:600;font-size:19px;white-space:nowrap">Ready to keep planning?</span>
+            <span style="flex:1;height:1px;background:var(--color-divider)"></span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div onClick="{{ goA }}" style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--color-divider);border-radius:var(--radius-lg);padding:13px 14px;cursor:pointer;min-height:44px" style-hover="border-color:var(--color-accent-400);background:var(--color-neutral-100)">
+              <span style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14px">Dec south coast trip</span><span style="font-size:12px;color:var(--color-neutral-500);font-feature-settings:'tnum'">2d ago · 6 places pinned</span></span>
+              <span style="font-size:12.5px;color:var(--color-accent-700);border-bottom:1px solid var(--color-accent-300)">Resume</span>
+            </div>
+            <div onClick="{{ goA }}" style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--color-divider);border-radius:var(--radius-lg);padding:13px 14px;cursor:pointer;min-height:44px" style-hover="border-color:var(--color-accent-400);background:var(--color-neutral-100)">
+              <span style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14px">Tea country, 4 days</span><span style="font-size:12px;color:var(--color-neutral-500);font-feature-settings:'tnum'">6d ago · 3 places pinned</span></span>
+              <span style="font-size:12.5px;color:var(--color-accent-700);border-bottom:1px solid var(--color-accent-300)">Resume</span>
+            </div>
+          </div>
+        </div>
+        <div style="flex:none;padding:6px 20px 34px;display:flex;flex-direction:column;gap:var(--space-2)">
+          <div style="display:flex;gap:var(--space-2);justify-content:center">
+            <span style="font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid var(--color-divider);color:var(--color-neutral-500);background:var(--color-bg)">dates</span>
+            <span style="font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid var(--color-divider);color:var(--color-neutral-500);background:var(--color-bg)">budget</span>
+            <span style="font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid var(--color-divider);color:var(--color-neutral-500);background:var(--color-bg)">pace</span>
+          </div>
+          <div onClick="{{ goA }}" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);border:1px solid var(--color-neutral-300);background:var(--color-neutral-100);border-radius:999px;padding:11px 8px 11px 18px;cursor:pointer;box-shadow:var(--shadow-md);min-height:44px;box-sizing:border-box" style-hover="border-color:var(--color-accent-400)">
+            <span style="font-size:13.5px;font-style:italic;color:var(--color-neutral-500);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0">Describe the trip in your head — vague is fine…</span>
+            <span style="width:34px;height:34px;border-radius:50%;border:1px solid var(--color-accent);color:var(--color-accent-700);display:flex;align-items:center;justify-content:center;font-size:15px;flex:none">→</span>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ isChat }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+        <div style="display:flex;align-items:center;gap:var(--space-2);padding:10px 16px;border-bottom:1px solid var(--color-divider);flex:none">
+          <span onClick="{{ goHome }}" style="font-size:13px;color:var(--color-accent-700);cursor:pointer;padding:6px 6px 6px 0">‹ Home</span>
+          <span style="flex:1;text-align:center;font-family:var(--font-heading);font-weight:600;font-size:16px">{{ chatTitle }}</span>
+          <span style="font-size:10.5px;padding:3px 8px;border-radius:999px;border:1px solid {{ chatBadgeBorder }};color:{{ chatBadgeColor }};background:{{ chatBadgeBg }};white-space:nowrap">{{ chatBadge }}</span>
+        </div>
+
+        <div style="flex:1;overflow-y:auto;padding:18px 16px 20px;display:flex;flex-direction:column;gap:var(--space-3)">
+
+          <sc-if value="{{ isA }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-end;max-width:82%;background:var(--color-neutral-200);border-radius:14px 14px 3px 14px;padding:11px 14px;font-size:14px;line-height:1.55">Two weeks in December, beaches but I also want to see leopards. Not a resort person, mid budget.</div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-1)">
+              <div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">What I understood — edit anything</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <span style="font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--color-neutral-400);background:var(--color-neutral-100);cursor:pointer" style-hover="border-color:var(--color-accent-500)">📅 Dec · 2 wks <span style="color:var(--color-neutral-500)">✎</span></span>
+                <span style="font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--color-neutral-400);background:var(--color-neutral-100);cursor:pointer" style-hover="border-color:var(--color-accent-500)">💰 mid <span style="color:var(--color-neutral-500)">✎</span></span>
+                <span style="font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--color-neutral-400);background:var(--color-neutral-100);cursor:pointer" style-hover="border-color:var(--color-accent-500)">📍 south + wildlife <span style="color:var(--color-neutral-500)">✎</span></span>
+                <span style="font-size:12px;padding:6px 11px;border-radius:999px;border:1px dashed var(--color-neutral-400);color:var(--color-neutral-500);cursor:pointer">+ add</span>
+              </div>
+            </div>
+            <div style="flex:none;border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);overflow:hidden">
+              <div onClick="{{ toggleTraceA }}" style="display:flex;align-items:center;gap:var(--space-2);padding:10px 13px;cursor:pointer;min-height:44px;box-sizing:border-box" style-hover="background:var(--color-neutral-200)">
+                <span style="width:13px;height:13px;border-radius:50%;border:1.5px dashed var(--color-accent-600);animation:wspin 1.1s linear infinite;flex:none"></span>
+                <span style="font-size:12.5px;flex:1">{{ traceALabel }}</span>
+                <span style="font-size:11px;color:var(--color-neutral-500)">{{ traceAVerb }}</span>
+              </div>
+              <sc-if value="{{ traceAOpen }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:8px 13px;border-top:1px solid var(--color-divider);font-size:12px">
+                <span style="color:var(--color-accent-700);flex:none">◆</span><span style="width:74px;flex:none">Supervisor</span><span style="color:var(--color-neutral-600);flex:1">spawned 3: places + timing + safety</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:8px 13px;border-top:1px solid var(--color-divider);font-size:12px">
+                <span style="color:oklch(0.45 0.1 152);flex:none">✓</span><span style="width:74px;flex:none">Discovery</span><span style="color:var(--color-neutral-600);flex:1">guide-reviewed KB · 4 matches</span><span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid oklch(0.78 0.07 152);color:oklch(0.4 0.09 152);background:oklch(0.96 0.02 152);white-space:nowrap">✓ guide-reviewed</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:8px 13px;border-top:1px solid var(--color-divider);font-size:12px;background:var(--color-accent-100)">
+                <span style="width:12px;height:12px;border-radius:50%;border:1.5px dashed var(--color-accent-600);animation:wspin 1.1s linear infinite;flex:none"></span><span style="width:74px;flex:none">Weather</span><span style="color:var(--color-neutral-600);flex:1">live December check…</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:8px 13px;border-top:1px solid var(--color-divider);font-size:12px">
+                <span style="color:oklch(0.45 0.1 152);flex:none">✓</span><span style="width:74px;flex:none">Safety</span><span style="color:var(--color-neutral-600);flex:1">south coast · advisories checked</span>
+              </div>
+              </sc-if>
+            </div>
+            <div style="font-size:13.5px;line-height:1.6;padding:0 2px">December is on your side — the southwest dries out just as leopard sightings peak. Two anchors worth holding first:</div>
+            <div class="hscroll" style="flex:none;display:flex;gap:var(--space-2);overflow-x:auto;margin:0 -16px;padding:2px 16px 6px;scrollbar-width:none">
+              <div style="flex:none;width:218px;border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column">
+                <div style="height:110px"><image-slot id="ps-yala" src="img/yala-leopard.jpg" credit="Charles J. Sharp · CC BY-SA 4.0" credit-href="https://commons.wikimedia.org/wiki/File:Sri_Lankan_leopard_(Panthera_pardus_kotiya)_female_5.jpg" shape="rect" placeholder="Yala — leopard photo"></image-slot></div>
+                <div style="padding:11px 12px;display:flex;flex-direction:column;gap:5px">
+                  <div style="font-family:var(--font-heading);font-weight:600;font-size:16px">Yala National Park</div>
+                  <div style="font-size:11.5px;color:var(--color-neutral-500)">Southern Province</div>
+                  <div style="font-size:12px;line-height:1.45">Dry season begins Dec — best leopard odds of the year.</div>
+                  <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid oklch(0.78 0.07 152);color:oklch(0.4 0.09 152);background:oklch(0.96 0.02 152);align-self:flex-start">✓ guide-reviewed</span>
+                  <div style="display:flex;gap:6px;padding-top:6px;border-top:1px solid var(--color-divider)">
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">📌 pin</span>
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">👍</span>
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">👎</span>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:none;width:218px;border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column">
+                <div style="height:110px"><image-slot id="ps-talalla" src="img/talalla-beach.jpg" credit="Nilan.iro · CC BY-SA 4.0" credit-href="https://commons.wikimedia.org/wiki/File:Talallabeach.jpg" shape="rect" placeholder="Talalla — beach photo"></image-slot></div>
+                <div style="padding:11px 12px;display:flex;flex-direction:column;gap:5px">
+                  <div style="font-family:var(--font-heading);font-weight:600;font-size:16px">Talalla Beach</div>
+                  <div style="font-size:11.5px;color:var(--color-neutral-500)">South coast · near Matara</div>
+                  <div style="font-size:12px;line-height:1.45">Calm swell in Dec, no resort strip, 40 min to the Yala road.</div>
+                  <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid oklch(0.78 0.07 152);color:oklch(0.4 0.09 152);background:oklch(0.96 0.02 152);align-self:flex-start">✓ guide-reviewed</span>
+                  <div style="display:flex;gap:6px;padding-top:6px;border-top:1px solid var(--color-divider)">
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">📌 pin</span>
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">👍</span>
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">👎</span>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:none;width:218px;border:1px dashed var(--color-neutral-400);border-radius:var(--radius-lg);background:var(--color-neutral-100);overflow:hidden;display:flex;flex-direction:column;animation:wshimmer 1.6s ease-in-out infinite">
+                <div style="height:110px;background:var(--color-neutral-200)"></div>
+                <div style="padding:11px 12px;display:flex;flex-direction:column;gap:8px">
+                  <div style="height:12px;width:70%;border-radius:3px;background:var(--color-neutral-200)"></div>
+                  <div style="height:9px;width:45%;border-radius:3px;background:var(--color-neutral-200)"></div>
+                  <div style="height:9px;width:88%;border-radius:3px;background:var(--color-neutral-200)"></div>
+                  <div style="font-size:11px;color:var(--color-neutral-500);font-style:italic">streaming in…</div>
+                </div>
+              </div>
+            </div>
+            <div style="border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);padding:13px 14px;display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;gap:var(--space-2)">
+                <span style="font-family:var(--font-heading);font-weight:600;font-size:15px;flex:1">South coast · December outlook</span>
+                <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--color-accent-300);color:var(--color-accent-700);background:var(--color-accent-100);white-space:nowrap;font-feature-settings:'tnum'">◉ live · 14:05</span>
+              </div>
+              <div style="font-size:12.5px;line-height:1.5">Dry season settling in. 29–31°C, short afternoon showers easing after the first week.</div>
+              <div style="font-size:10.5px;color:var(--color-neutral-500)">source: Dept. of Meteorology, Sri Lanka</div>
+            </div>
+            <div onClick="{{ goB }}" style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:13px;padding:9px 15px;border-radius:999px;border:1px solid var(--color-accent);color:var(--color-accent-700);cursor:pointer;min-height:44px;box-sizing:border-box" style-hover="background:var(--color-accent-100)">What about Kumana? <span>→</span></div>
+          </sc-if>
+
+          <sc-if value="{{ isB }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-end;max-width:82%;background:var(--color-neutral-200);border-radius:14px 14px 3px 14px;padding:11px 14px;font-size:14px;line-height:1.55">What about Kumana bird sanctuary? and Sigirya?</div>
+            <div style="flex:none;border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);overflow:hidden">
+              <div onClick="{{ toggleTraceB }}" style="display:flex;align-items:center;gap:var(--space-2);padding:10px 13px;cursor:pointer;min-height:44px;box-sizing:border-box" style-hover="background:var(--color-neutral-200)">
+                <span style="color:var(--color-accent-700)">◆</span>
+                <span style="font-size:12.5px;flex:1">Supervisor — 1 agent, then 1 more</span>
+                <span style="font-size:11px;color:var(--color-neutral-500)">{{ traceBVerb }}</span>
+              </div>
+              <sc-if value="{{ traceBOpen }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:8px 13px;border-top:1px solid var(--color-divider);font-size:12px">
+                <span style="color:var(--color-neutral-500);flex:none">✕</span><span style="width:78px;flex:none">Discovery</span><span style="color:var(--color-neutral-600);flex:1">no strong KB match — “Sigirya”</span><span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--color-neutral-300);color:var(--color-neutral-600);font-feature-settings:'tnum'">0 matches</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:9px 13px;border-top:1px solid oklch(0.6 0.09 245);font-size:12px;background:oklch(0.96 0.018 245);animation:wslide .5s ease-out">
+                <span style="color:oklch(0.45 0.1 245);flex:none">✦</span><span style="width:78px;flex:none;color:oklch(0.38 0.09 245)">Web-Search</span><span style="color:oklch(0.42 0.08 245);flex:1">spawned on KB miss · fetching sources</span><span style="width:12px;height:12px;border-radius:50%;border:1.5px dashed oklch(0.5 0.1 245);animation:wspin 1.1s linear infinite;flex:none"></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:8px 13px;border-top:1px solid var(--color-divider);font-size:12px">
+                <span style="color:oklch(0.45 0.1 152);flex:none">✓</span><span style="width:78px;flex:none">Web-Search</span><span style="color:var(--color-neutral-600);flex:1">2 sources agree · 1 discarded (low trust)</span><span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid oklch(0.72 0.07 245);color:oklch(0.38 0.09 245);background:oklch(0.96 0.018 245);white-space:nowrap">◍ web-sourced</span>
+              </div>
+              </sc-if>
+            </div>
+            <div style="border:1px dashed var(--color-neutral-400);border-radius:var(--radius-lg);padding:13px 14px;display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:13.5px;line-height:1.5">Did you mean <span style="border-bottom:1px solid var(--color-accent);font-style:italic">Sigiriya</span> — the rock fortress in the Cultural Triangle?</div>
+              <div style="display:flex;gap:var(--space-2)">
+                <span style="font-size:12.5px;padding:8px 14px;border-radius:var(--radius-md);border:1px solid var(--color-accent);color:var(--color-accent-700);cursor:pointer;min-height:44px;display:inline-flex;align-items:center" style-hover="background:var(--color-accent-100)">Yes, that one</span>
+                <span style="font-size:12.5px;padding:8px 14px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);color:var(--color-neutral-600);cursor:pointer;min-height:44px;display:inline-flex;align-items:center" style-hover="background:var(--color-neutral-200)">No, keep my spelling</span>
+              </div>
+            </div>
+            <div style="font-size:13.5px;line-height:1.6;padding:0 2px">Kumana is real and quietly wonderful — Yala’s bird-rich neighbour without the jeep queues. On Sigiriya, here’s what the wider web says:</div>
+            <div class="hscroll" style="flex:none;display:flex;gap:var(--space-2);overflow-x:auto;margin:0 -16px;padding:2px 16px 6px;scrollbar-width:none">
+              <div style="flex:none;width:230px;border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column">
+                <div style="height:110px"><image-slot id="ps-sigiriya" src="img/sigiriya.jpg" credit="Bernard Gagnon · CC BY-SA 3.0" credit-href="https://commons.wikimedia.org/wiki/File:Sigiriya.jpg" shape="rect" placeholder="Sigiriya rock photo"></image-slot></div>
+                <div style="padding:11px 12px;display:flex;flex-direction:column;gap:5px">
+                  <div style="font-family:var(--font-heading);font-weight:600;font-size:16px">Sigiriya Rock Fortress</div>
+                  <div style="font-size:11.5px;color:var(--color-neutral-500)">Central Province · 2h 30m from Kandy</div>
+                  <div style="font-size:12px;line-height:1.45">Dry in Dec; climb before 07:30 to beat heat and coach groups.</div>
+                  <div style="display:flex;gap:5px;flex-wrap:wrap">
+                    <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid oklch(0.72 0.07 245);color:oklch(0.38 0.09 245);background:oklch(0.96 0.018 245)">◍ web-sourced</span>
+                    <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--color-neutral-300);color:var(--color-neutral-600);font-feature-settings:'tnum'">2 sources</span>
+                  </div>
+                  <div style="font-size:10.5px;color:var(--color-neutral-500);font-style:italic">not yet checked by our local guides</div>
+                  <div style="display:flex;gap:6px;padding-top:6px;border-top:1px solid var(--color-divider)">
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">📌 pin</span>
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">👍</span>
+                    <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">👎</span>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:none;width:200px;border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);padding:11px 12px;display:flex;flex-direction:column;gap:6px">
+                <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500)">Guide-reviewed nearby</div>
+                <div style="font-family:var(--font-heading);font-weight:600;font-size:16px">Pidurangala</div>
+                <div style="font-size:12px;line-height:1.45">Same view, a quarter of the crowd, half the climb.</div>
+                <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid oklch(0.78 0.07 152);color:oklch(0.4 0.09 152);background:oklch(0.96 0.02 152);align-self:flex-start">✓ guide-reviewed</span>
+                <div style="display:flex;gap:6px;padding-top:6px;border-top:1px solid var(--color-divider);margin-top:auto">
+                  <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">📌 pin</span>
+                  <span style="font-size:11px;padding:4px 9px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">👍</span>
+                </div>
+              </div>
+            </div>
+            <div onClick="{{ goC }}" style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:13px;padding:9px 15px;border-radius:999px;border:1px solid var(--color-accent);color:var(--color-accent-700);cursor:pointer;min-height:44px;box-sizing:border-box" style-hover="background:var(--color-accent-100)">Solo in the hills — safe? <span>→</span></div>
+          </sc-if>
+
+          <sc-if value="{{ isC }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-end;max-width:82%;background:var(--color-neutral-200);border-radius:14px 14px 3px 14px;padding:11px 14px;font-size:14px;line-height:1.55">I’m travelling alone. Nuwara Eliya next week — anything I should know?</div>
+            <div onClick="{{ toggleTraceC }}" style="border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);cursor:pointer">
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:10px 13px;font-size:12.5px;color:var(--color-neutral-600);font-feature-settings:'tnum'">
+                <span>{{ traceCArrow }}</span><span style="flex:1">2 agents · Safety + Weather · 2.1s</span><span style="font-size:11px;color:var(--color-neutral-500)">tap to {{ traceCVerb }}</span>
+              </div>
+              <sc-if value="{{ traceCOpen }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:var(--space-2);padding:8px 13px;border-top:1px solid var(--color-divider);font-size:12px;animation:wslide .3s ease-out">
+                  <span style="color:oklch(0.45 0.1 152)">✓</span><span style="width:74px;flex:none">Safety</span><span style="color:var(--color-neutral-600);flex:1">DMC advisories · hill country</span><span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--color-accent-300);color:var(--color-accent-700);background:var(--color-accent-100);font-feature-settings:'tnum'">◉ live · 14:07</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:var(--space-2);padding:8px 13px;border-top:1px solid var(--color-divider);font-size:12px;animation:wslide .3s ease-out">
+                  <span style="color:oklch(0.45 0.1 152)">✓</span><span style="width:74px;flex:none">Weather</span><span style="color:var(--color-neutral-600);flex:1">7-day rainfall · Nuwara Eliya</span>
+                </div>
+              </sc-if>
+            </div>
+            <div style="flex:none;border:1px solid var(--color-accent-400);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
+              <div style="display:flex;align-items:center;gap:var(--space-2);padding:11px 13px;background:var(--color-accent-100);border-bottom:1px solid var(--color-accent-300)">
+                <span style="flex:none">⚠️</span>
+                <span style="font-family:var(--font-heading);font-weight:600;font-size:15.5px;flex:1;line-height:1.2">Heavy rain advisory — Nuwara Eliya</span>
+                <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--color-accent-300);color:var(--color-accent-700);background:var(--color-bg);white-space:nowrap;font-feature-settings:'tnum'">◉ live · 14:07</span>
+              </div>
+              <div style="padding:12px 13px;display:flex;flex-direction:column;gap:8px;background:var(--color-neutral-100)">
+                <div style="font-size:13px;line-height:1.6">Landslide watch on the Ramboda road until Thursday. Hill-country trains are running; buses on that stretch are the risk. Nothing here says don’t come — it says arrive by train and keep the walking plans flexible.</div>
+                <div style="display:flex;align-items:center;gap:var(--space-2);font-size:10.5px;color:var(--color-neutral-500);font-feature-settings:'tnum'">
+                  <span style="flex:1">source: Disaster Management Centre · checked 14:07</span>
+                  <span style="padding:3px 8px;border-radius:var(--radius-md);border:1px solid var(--color-neutral-300);cursor:pointer" style-hover="border-color:var(--color-accent-500)">◷ re-check</span>
+                </div>
+              </div>
+            </div>
+            <div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-500);padding-top:2px">Solo-travel notes for this region</div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+              <div style="border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);padding:12px 13px;display:flex;flex-direction:column;gap:5px">
+                <div style="font-family:var(--font-heading);font-weight:600;font-size:15px">Take the train, not the night bus</div>
+                <div style="font-size:12.5px;line-height:1.5">Reserved 2nd class, daytime. Station tuk-tuks are metered at the desk.</div>
+                <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid oklch(0.78 0.07 152);color:oklch(0.4 0.09 152);background:oklch(0.96 0.02 152);align-self:flex-start">✓ guide-reviewed</span>
+              </div>
+              <div style="border:1px solid var(--color-divider);border-radius:var(--radius-lg);background:var(--color-neutral-100);padding:12px 13px;display:flex;flex-direction:column;gap:5px">
+                <div style="font-family:var(--font-heading);font-weight:600;font-size:15px">Guesthouses over hotels here</div>
+                <div style="font-size:12.5px;line-height:1.5">Family-run, lit entrances, hosts who notice when you’re late back.</div>
+                <span style="font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid oklch(0.78 0.07 152);color:oklch(0.4 0.09 152);background:oklch(0.96 0.02 152);align-self:flex-start">✓ guide-reviewed</span>
+              </div>
+            </div>
+          </sc-if>
+
+        </div>
+
+        <sc-if value="{{ isC }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:none;display:flex;align-items:center;gap:var(--space-2);padding:8px 16px;border-top:1px solid var(--color-divider);background:var(--color-neutral-100);font-size:12px;font-feature-settings:'tnum'">
+          <span style="color:var(--color-neutral-500);font-size:10px;letter-spacing:.06em;text-transform:uppercase;flex:none">Always</span>
+          <span>Emergency <span style="border-bottom:1px solid var(--color-accent-400)">1919</span></span>
+          <span style="color:var(--color-neutral-400)">·</span>
+          <span>Tourist Police <span style="border-bottom:1px solid var(--color-accent-400)">011-242-1052</span></span>
+        </div>
+        </sc-if>
+
+        <div style="flex:none;padding:10px 16px 14px;border-top:1px solid var(--color-divider)">
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--color-neutral-300);border-radius:999px;padding:11px 16px;font-size:13px;color:var(--color-neutral-500);font-style:italic;min-height:44px;box-sizing:border-box">Ask a follow-up… <span style="width:30px;height:30px;border-radius:50%;border:1px solid var(--color-accent);color:var(--color-accent-700);display:flex;align-items:center;justify-content:center;flex:none;font-style:normal">→</span></div>
+        </div>
+      </div>
+      </sc-if>
+
+    </div>
+  </div>
+
+  <div style="font-size:11.5px;color:var(--color-neutral-500);max-width:430px;text-align:center;line-height:1.5;font-style:italic">Onboarding → Home → Chat (brainstorm → fallback → safety). Every card anatomy matches the desktop wireframes; image slots accept dropped photos.</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFlowRail&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;ctaGlow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Prototype&quot;}}">
+class Component extends DCLogic {
+  state = { screen: 'onboard', traceA: true, traceB: true, traceC: false };
+  go(screen) { this.setState({ screen }); }
+  renderVals() {
+    const s = this.state.screen;
+    const chat = s === 'a' || s === 'b' || s === 'c';
+    const rail = (on) => on ? ['var(--color-accent)', 'var(--color-accent-700)'] : ['var(--color-divider)', 'var(--color-neutral-600)'];
+    const [obB, obC] = rail(s === 'onboard'), [hB, hC] = rail(s === 'home'), [aB, aC] = rail(s === 'a'), [bB, bC] = rail(s === 'b'), [cB, cC] = rail(s === 'c');
+    const badge = {
+      a: ['◍ 3 agents working', 'var(--color-accent-300)', 'var(--color-accent-700)', 'var(--color-accent-100)'],
+      b: ['✦ web-search spawned', 'oklch(0.72 0.07 245)', 'oklch(0.38 0.09 245)', 'oklch(0.96 0.018 245)'],
+      c: ['◉ live 14:07', 'var(--color-accent-300)', 'var(--color-accent-700)', 'var(--color-accent-100)'],
+    }[s] || ['', 'transparent', 'transparent', 'transparent'];
+    return {
+      showFlowRail: this.props.showFlowRail ?? true,
+      ctaGlow: (this.props.ctaGlow ?? true)
+        ? '0 6px 24px color-mix(in srgb, var(--color-accent) 45%, transparent), 0 2px 8px color-mix(in srgb, #2d2b2b 25%, transparent)'
+        : 'var(--shadow-md)',
+      isOnboard: s === 'onboard', isHome: s === 'home', isChat: chat,
+      isA: s === 'a', isB: s === 'b', isC: s === 'c',
+      chatTitle: s === 'c' ? 'Solo safety — hill country' : 'Dec south coast trip',
+      chatBadge: badge[0], chatBadgeBorder: badge[1], chatBadgeColor: badge[2], chatBadgeBg: badge[3],
+      goOnboard: () => this.go('onboard'), goHome: () => this.go('home'),
+      goA: () => this.go('a'), goB: () => this.go('b'), goC: () => this.go('c'),
+      toggleTraceA: () => this.setState(st => ({ traceA: !st.traceA })),
+      traceAOpen: this.state.traceA,
+      traceALabel: this.state.traceA ? 'Working — 3 agents spawned' : '3 agents · 4 guide-reviewed results · 2.8s',
+      traceAVerb: this.state.traceA ? '▾ hide agents' : '▸ show agents',
+      toggleTraceB: () => this.setState(st => ({ traceB: !st.traceB })),
+      traceBOpen: this.state.traceB,
+      traceBVerb: this.state.traceB ? '▾ hide agents' : '▸ show agents',
+      toggleTraceC: () => this.setState(st => ({ traceC: !st.traceC })),
+      traceCOpen: this.state.traceC,
+      traceCArrow: this.state.traceC ? '▾' : '▸',
+      traceCVerb: this.state.traceC ? 'collapse' : 'expand',
+      railOnboardBorder: obB, railOnboardColor: obC, railHomeBorder: hB, railHomeColor: hC,
+      railABorder: aB, railAColor: aC, railBBorder: bB, railBColor: bC, railCBorder: cB, railCColor: cC,
+    };
+  }
+}
+</script>
+</body>
+</html>
