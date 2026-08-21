@@ -11,6 +11,7 @@
 | mentor-streaming-guide.md | Mentor's technical guide: SSE-first transport, JSON-chunk generative UI protocol, build order, pitfalls | 2026-08-21 |
 | ../wireframes/poc-hero-flow.html | Low-fi structural wireframes v3.1 (issue #3) | 2026-08-16 |
 | ../wireframes/weli-ai-wireframes.dc.html | Polished Claude Design wireframe set — 4 screens + trust-language legend (open in browser) | 2026-08-16 |
+| ../prototypes/weli-ai-mobile-prototype.dc.html | Clickable mobile prototype (#18) — onboarding/home/chat ×3, images + iPhone frame, standalone (open in browser) | 2026-08-21 |
 | ../specs/2026-08-15-poc-scope-design.md | Approved PoC spec: architecture, stories + G/W/T criteria, MoSCoW, skeleton | 2026-08-15 |
 | ../decisions/2026-08-15-poc-scope-dynamic-multiagent.md | Scope decision: dynamic multi-agent PoC | 2026-08-15 |
 | ../weekly-logs/2026-08-15.md | First weekly log for mentor | 2026-08-15 |

@@ -4,6 +4,18 @@ _Append-only. Newest entries at top._
 
 ---
 
+## 2026-08-21 (later) — Clickable mobile prototype DELIVERED (#18 closed)
+- User generated the mobile prototype in Claude Design (same project as wireframes; pastel "Take a break" + TripPilot refs, prompt engineered here); imported via DesignSync → `prototypes/` (10 files, self-contained).
+- **Solved the images gap:** 3 Wikimedia Commons CC BY-SA photos (Yala leopard, Talalla, Sigiriya) fetched with credits embedded in the image-slots + an original SVG onboarding sticker (map+pin+compass).
+- **Fixed standalone rendering:** the React-based `ios-frame.jsx` doesn't run outside Claude Design's canvas → replaced with a pure-CSS iPhone frame (bezel, Dynamic Island, status bar, home indicator) — renders identically in any browser.
+- Pushed (`08ca86c`), **#18 commented + closed** with viewing instructions for mentor.
+- Flow: Onboarding → Home → Chat ×3 states (brainstorm w/ live trace + chips + cards · fallback w/ spawn-row + did-you-mean · safety w/ advisory + emergency bar), flow-rail navigation on top.
+- Earlier same day: mentor's streaming guide filed → `wiki/mentor-streaming-guide.md` (transport resolved: SSE-first; JSON component chunks + view registry).
+
+**Next:** ping mentor to review prototype + restart daily calls · decide #19 (close as satisfied by prototype?) · start the build (blockers: Anthropic key, Docker) · #20 canvas scope · Aug 29 presentation.
+
+---
+
 ## 2026-08-21 — Mentor's streaming guide filed; transport resolved (SSE-first)
 - Received + filed mentor's technical guide → `wiki/mentor-streaming-guide.md` (verbatim + "what this settles" header).
 - **Transport flag RESOLVED:** SSE by default; WebSocket only for interrupts / human-in-the-loop / persistent sessions. Noted on issue #4.
