@@ -9,6 +9,8 @@
 | risk-audit-2026-08-15.md | Full adversarial audit (4 crit / 5 high / 13 med) — technical part parked | 2026-08-15 |
 | idea-phase-findings.md | Story-layer findings F1–F7 vs mentor metrics → tickets #13–#17 | 2026-08-16 |
 | mentor-streaming-guide.md | Mentor's technical guide: SSE-first transport, JSON-chunk generative UI protocol, build order, pitfalls | 2026-08-21 |
+| submission-guidelines.md | Official final-submission requirements: ≤20-min video, slides, diagram, repo access, Teamtailor | 2026-08-22 |
+| agent-guardrails.md | BUILD REQUIREMENT: prompt-injection defense + harmful-action prevention checklist (all agents) | 2026-08-22 |
 | ../wireframes/poc-hero-flow.html | Low-fi structural wireframes v3.1 (issue #3) | 2026-08-16 |
 | ../wireframes/weli-ai-wireframes.dc.html | Polished Claude Design wireframe set — 4 screens + trust-language legend (open in browser) | 2026-08-16 |
 | ../prototypes/weli-ai-mobile-prototype.dc.html | Clickable mobile prototype (#18) — onboarding/home/chat ×3, images + iPhone frame, standalone (open in browser) | 2026-08-21 |

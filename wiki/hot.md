@@ -6,6 +6,7 @@ _Rewritten each session. ~300 words max. Start here._
 A **brainstorming/discovery companion** for Sri Lanka trips — dynamic multi-agent system. Core defined at the 2026-08-21 sync: a capped **mini-interview criteria engine** feeds a **trip-timeline planner (the centerpiece)** — justified day-by-day plan + animated journey timeline (not a map). During-trip live agent **deferred past Aug 29**. Provenance badges + guide-reviewed KB remain the trust story. Working title "Weli AI" (#13 open).
 
 ## 🎯 Aug 29 submission → elimination → top-10 live demo (Trace, TBC) · **next sync Sunday**
+**Submission format (official, `wiki/submission-guidelines.md`): ≤20-min RECORDED video + slides + technical diagram + accessible GitHub repo (all mandatory) + 5 Teamtailor answers.** Tickets #29–#33. ⚠️ repo is private — judge access must be arranged (#33).
 
 ## Client & stack (locked 2026-08-21, see decisions/-1…-6)
 - **SwiftUI with predefined dynamic components** — NOT generative UI (OpenUI is web-only; A2UI ~3× cost). JSON chunks → view registry.
@@ -22,4 +23,4 @@ Reviewed positively — agent-count display fine for judges; make consumer copy 
 - Mentor owes: recording-tool link · LangSmith instructions · design-pattern review · (maybe) template prototype.
 
 ## Gotchas
-`/save-mvp` · `/log-meeting` · diarization unreliable in tonight's transcript (roles attributed only where unambiguous) · watch-notification demo = mock, frame honestly · Google-Maps free-tier figure unverified · safety copy: never "all-clear".
+`/save-mvp` · `/log-meeting` · diarization unreliable in tonight's transcript (roles attributed only where unambiguous) · watch-notification demo = mock, frame honestly · Google-Maps free-tier figure unverified · safety copy: never "all-clear" · **GUARDRAILS ARE A BUILD REQUIREMENT at every step — `wiki/agent-guardrails.md` (#34): data-vs-instruction boundaries, per-agent tool allowlists, schema-validated outputs, KB suggestion-queue, injection tests in eval.**
